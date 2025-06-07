@@ -61,5 +61,6 @@ export default StyleSheet.create({
     color: colors.text.Primary,
     backgroundColor: colors.background.Primary,
     marginBottom: 50,
+    borderColor: colors.background.Primary,
   },
 });

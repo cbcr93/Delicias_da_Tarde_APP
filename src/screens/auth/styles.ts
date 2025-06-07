@@ -60,6 +60,7 @@ export default StyleSheet.create({
   button_Text: {
     color: colors.text.Primary,
     backgroundColor: colors.background.Primary,
+    borderColor: colors.background.Primary,
     marginBottom: 50,
   },
 });

@@ -8,6 +8,7 @@ import * as authServices from '@services/auth';
 import { useAuth } from '@contexts/AuthContext';
 
 import styles from './VerifyAndChangePasswordScreenStyles';
+import { colors } from '@themes/colors';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -168,6 +169,7 @@ const VerifyAndChangePasswordScreen = (props: Props) => {
         title={translate('PAGE.PROFILE.VERIFY_CHANGE_PASS_SCREEN.FORM.TO_PROFILE')}
         onPress={redirect}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

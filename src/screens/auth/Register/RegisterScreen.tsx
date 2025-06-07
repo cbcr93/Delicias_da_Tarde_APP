@@ -8,6 +8,7 @@ import { isStrongPassword } from '@utils/validators';
 import { findUserByEmail } from '@database/repositories/users';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -145,6 +146,7 @@ const RegisterScreen = (props: Props) => {
         title={translate('PAGE.AUTH.REGISTER_SCREEM.FORM.TO_LOGIN')}
         onPress={redirect}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

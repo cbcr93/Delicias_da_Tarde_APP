@@ -17,17 +17,17 @@ export const DrawerNavigation = (props: Props) => {
     <Drawer.Navigator
       screenOptions={{
         headerTitle: '',
-        headerTintColor: colors.gray[1000],
+        headerTintColor: colors.text.Tertiary,
         headerStyle: {
-          backgroundColor: colors.white,
+          backgroundColor: colors.background.Secondary,
         },
-        drawerActiveTintColor: colors.gray[1000],
-        drawerActiveBackgroundColor: colors.gray[200],
+        drawerActiveTintColor: colors.text.Tertiary,
+        drawerActiveBackgroundColor: colors.background.Tertiary,
         drawerLabelStyle: {
-          color: colors.gray[1000],
+          color: colors.text.Tertiary,
         },
         drawerStyle: {
-          backgroundColor: colors.white,
+          backgroundColor: colors.background.Secondary,
         },
       }}
     >

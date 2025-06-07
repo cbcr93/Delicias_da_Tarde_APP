@@ -67,7 +67,8 @@ const ProfileScreen = (props: Props) => {
       <AdvancedButton
         title="Sair"
         onPress={handleLogout}
-        style={{ ...styles.buttonContainer, backgroundColor: colors.brand.Danger }}
+        style={{ ...styles.buttonContainer, backgroundColor: colors.brand.Secondary, borderColor: colors.brand.Secondary, }}
+        textColor={colors.text.Tertiary}
       />
     </View>
   );

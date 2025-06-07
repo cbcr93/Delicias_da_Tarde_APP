@@ -8,6 +8,7 @@ import { findUserByEmail } from '@database/repositories/users';
 import * as authServices from '@services/auth';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -103,6 +104,7 @@ const ForgotPasswordScreen = (props: Props) => {
         title={translate('PAGE.AUTH.RECOVE_PASS.FORGOT_PASS_SCREEM.FORM.TO_LOGIN')}
         onPress={redirect}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

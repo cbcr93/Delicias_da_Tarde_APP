@@ -40,8 +40,8 @@ export const AdvancedButton = (props: Props) => {
     rounded = false,
     icon,
     image,
-    backgroundColor = colors.components.bottomPrimary,
-    textColor = colors.text.Primary,
+    backgroundColor = colors.components.bottomSecondary,
+    textColor = colors.text.Tertiary,
     loading = false,
     disabled = false,
     style,
@@ -75,7 +75,7 @@ export const AdvancedButton = (props: Props) => {
           {image && image}
           {icon && (
             <View style={{ marginRight: title ? 8 : 0 }}>
-              {AdvancedIcon('Feather', icon, 15, '#eee')}
+              {AdvancedIcon('Feather', icon, 15, textColor)}
             </View>
           )}
           {title && (

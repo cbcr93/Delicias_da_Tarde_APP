@@ -9,6 +9,7 @@ import * as FormatUtils from '@utils/formatters';
 import { useAuth } from '@contexts/AuthContext';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -178,6 +179,7 @@ const VerifyRecoveryCodeScreen = (props: Props) => {
         title={translate('PAGE.AUTH.RECOVE_PASS.VERIFY_RECOVERY_CODE_SCREEN.FORM.TO_LOGIN')}
         onPress={redirect}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

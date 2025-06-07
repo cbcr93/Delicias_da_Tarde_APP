@@ -7,6 +7,7 @@ import { isValidEmail } from '@utils/validators';
 import { useAuth } from '@contexts/AuthContext';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -117,6 +118,7 @@ const LoginScreen = (props: Props) => {
           title={translate('PAGE.AUTH.LOGIN_SCREEM.FORM.TO_FORGOT_PASS')}
           onPress={redirectForgotPass}
           style={styles.button_Text}
+          textColor={colors.text.Primary}
         />
       </View>
 
@@ -124,6 +126,7 @@ const LoginScreen = (props: Props) => {
         title={translate('PAGE.AUTH.LOGIN_SCREEM.FORM.TO_REGISTER')}
         onPress={redirectRegiste}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );
