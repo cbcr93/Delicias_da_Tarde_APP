@@ -1,8 +1,5 @@
 export default {
   PAGE: {
-    ABOUT: {
-      TEXT: 'Sobre min!',
-    },
     AUTH: {
       REGISTER_SCREEM: {
         TITLE: 'Cadastre',
@@ -56,24 +53,30 @@ export default {
         },
       },
     },
-    CONTACT: {
-      TEXT: 'Contatos',
-    },
-    DETAILS: {
-      TEXT: 'Detalhes',
-      TEXT_NAME: 'Detalhes da tela: ',
-    },
     HOME: {
       TEXT: 'Minha Home',
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
     },
     INFO: {
       TEXT: 'Informações',
     },
-    NOTIFICATION: {
-      TEXT: 'Notificação',
-    },
-    PLUS: {
-      TEXT: 'Adicionar',
+    PRODUCT: {
+      TEXT: 'Produtos',
+      ADD_OR_EDIT_SCREEN: {
+        TEXT: 'Cadastrar/Editar produto',
+        ADD: 'Cadastrar produto',
+        EDIT: 'Editar produto',
+      },
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
+      STOCK: {
+        TEXT: 'Estoque',
+      },
     },
     PROFILE: {
       TEXT: 'Usuário',
@@ -99,8 +102,31 @@ export default {
         },
       },
     },
+    REPORT: {
+      TEXT: 'Relatório',
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
+      GENERAL: {
+        TEXT: 'Relatório Geral',
+      },
+    },
     SETTINGS: {
       TEXT: 'Configuração',
+    },
+    SALES: {
+      TEXT: 'Registro de Compras',
+      CART: {
+        TEXT: 'Carrinho',
+      },
+      CONFIRM: {
+        TEXT: 'Compra Concluída',
+      },
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
     },
   },
   COMPONENTS: {

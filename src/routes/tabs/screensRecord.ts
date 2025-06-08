@@ -4,7 +4,7 @@ import translate from '@services/i18n';
 import { HomeStack } from '@routes/stacks/HomeStack';
 
 export const HomeTabsRecord: Record<string, TabScreenConfig> = {
-  HomeStack: {
+  HomeTabStack: {
     component: HomeStack,
     isPrivate: true,
     options: {

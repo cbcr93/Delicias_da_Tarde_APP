@@ -10,25 +10,22 @@ interface Props {
   };
 }
 
-const InfoScreen = (props: Props) => {
+const DetailsReportScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirect = () => {
     navigation.navigate({
-      name: 'HomeStack',
+      name: 'Home',
       params: {},
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.INFO.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
-      />
+      <Text style={styles.text}>{translate('PAGE.REPORT.DETAILS.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );
 };
 
-export default InfoScreen;
+export default DetailsReportScreen;

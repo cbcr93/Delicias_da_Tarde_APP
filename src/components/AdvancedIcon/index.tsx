@@ -3,7 +3,12 @@ import { Feather, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { colors } from '@themes/colors';
 
 // eslint-disable-next-line
-export const AdvancedIcon = (type: string, iconName: any, size = 24, color = colors.text.Primary) => {
+export const AdvancedIcon = (
+  type: string,
+  iconName: any,
+  size = 24,
+  color = colors.text.Primary,
+) => {
   const IconComponent = {
     Feather,
     MaterialIcons,

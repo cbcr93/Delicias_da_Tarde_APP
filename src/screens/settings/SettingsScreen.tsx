@@ -15,7 +15,7 @@ const SettingsScreen = (props: Props) => {
 
   const redirect = () => {
     navigation.navigate({
-      name: 'HomeTab',
+      name: 'HomeStack',
       params: {},
     });
   };

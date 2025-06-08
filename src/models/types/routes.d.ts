@@ -16,7 +16,6 @@ export type IRoutesTabIcon = {
 
 export type RootStackParamList = {
   Home: { name?: string; options?: object };
-  Details: { name?: string; options?: object };
   LoginScreen: { name?: string; options?: object };
   ForgotPasswordScreen: { name?: string; options?: object };
   VerifyRecoveryCodeScreen: { name?: string; options?: { email?: string | null | undefined } };
@@ -27,6 +26,14 @@ export type RootStackParamList = {
   HomeDrawer: { name?: string; options?: object };
   HomeTab: { name?: string; options?: object };
   HomeStack: { name?: string; options?: object };
+  AddOrEditProductScreen: { name?: string; options?: object };
+  ProductDetailsScreen: { name?: string; options?: object };
+  StockScreen: { name?: string; options?: object };
+  CartScreen: { name?: string; options?: object };
+  ConfirmCartScreen: { name?: string; options?: object };
+  RegisterSalesScreen: { name?: string; options?: object };
+  DetailsReportScreen: { name?: string; options?: object };
+  GeneralReportScreen: { name?: string; options?: object };
 };
 
 export interface TabScreenConfig {
