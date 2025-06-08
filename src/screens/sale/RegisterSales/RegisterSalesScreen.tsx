@@ -1,15 +1,15 @@
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useState } from 'react';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
-import { formatCurrency } from '@utils/formatters';
 import { AdvacedInput } from '@components/AdvancedInput';
 import { AdvancedIcon } from '@components/AdvancedIcon';
 import translate from '@services/i18n';
+import { CardProductSale } from '@components/CardProductSale';
+import * as models from '@models/types';
 
 import styles from './styles';
-import { CardProductSale } from '@components/CardProductSale';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -84,11 +84,11 @@ const RegisterSalesScreen = (props: Props) => {
     },
   ];
 
-  const addCart = (item: any) => {
+  const addCart = (item: models.IProduct) => {
     console.log(item);
   };
 
-  const toDatails = (item: any) => {
+  const toDatails = (item: models.IProduct) => {
     console.log(item);
     redirect(navigation, {
       name: 'ProductDetailsScreen',

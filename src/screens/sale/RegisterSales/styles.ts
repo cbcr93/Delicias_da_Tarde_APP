@@ -1,4 +1,3 @@
-import { fontScale } from '@services/dimensions';
 import { colors } from '@themes/colors';
 import { StyleSheet } from 'react-native';
 

@@ -4,10 +4,10 @@ import translate from '@services/i18n';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { redirect } from '@routes/Redirect';
 import { formatCurrency } from '@utils/formatters';
-
-import styles from './styles';
 import * as models from '@models/types';
 import { useEffect, useState } from 'react';
+
+import styles from './styles';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

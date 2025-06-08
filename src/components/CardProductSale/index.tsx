@@ -3,13 +3,14 @@ import { Text, View } from 'react-native';
 import translate from '@services/i18n';
 import { formatCurrency } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
+import * as models from '@models/types';
 
 import styles from './styles';
 
 interface Props {
-  item: any;
-  toDatails: (item: any) => void;
-  addCart: (item: any) => void;
+  item: models.IProduct;
+  toDatails: (item: models.IProduct) => void;
+  addCart: (item: models.IProduct) => void;
 }
 export const CardProductSale = (props: Props) => {
   const { item, addCart, toDatails } = props;

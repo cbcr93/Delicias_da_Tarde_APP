@@ -1,13 +1,5 @@
 import React, { ReactElement, useRef } from 'react';
-import {
-  Pressable,
-  Text,
-  TextInput,
-  TextInputProps,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Pressable, Text, TextInput, TextInputProps, View, ViewStyle } from 'react-native';
 
 import { styles } from './styles';
 
