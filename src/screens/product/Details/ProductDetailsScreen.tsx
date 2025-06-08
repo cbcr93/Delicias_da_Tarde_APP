@@ -37,15 +37,15 @@ const ProductDetailsScreen = (props: Props) => {
       params: {
         options: {
           flag: 'edit',
-          item
-        }
+          item,
+        },
       },
     });
   };
 
   const addCart = () => {
-    console.log(item)
-  }
+    console.log(item);
+  };
 
   useEffect(() => {
     if (item) {
@@ -54,12 +54,10 @@ const ProductDetailsScreen = (props: Props) => {
       } else {
         setDisabled(false);
       }
-
     } else {
       setDisabled(true);
     }
-
-  }, [item])
+  }, [item]);
 
   return (
     <View style={styles.container}>
@@ -68,20 +66,12 @@ const ProductDetailsScreen = (props: Props) => {
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.NAME')}</Text>
           </View>
-          <Text
-            style={styles.text}
-          >
-            {item?.name ? item.name : 'indefinido'}
-          </Text>
+          <Text style={styles.text}>{item?.name ? item.name : 'indefinido'}</Text>
 
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.DESCRIPTION')}</Text>
           </View>
-          <Text
-            style={styles.text}
-          >
-            {item?.description ? item.description : 'indefinido'}
-          </Text>
+          <Text style={styles.text}>{item?.description ? item.description : 'indefinido'}</Text>
 
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.PRICE')}</Text>
@@ -93,9 +83,7 @@ const ProductDetailsScreen = (props: Props) => {
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.TYPE')}</Text>
           </View>
-          <Text style={styles.text}>
-            {item?.type ? item.type : 'indefinido'}
-          </Text>
+          <Text style={styles.text}>{item?.type ? item.type : 'indefinido'}</Text>
 
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.AMOUNT')}</Text>
@@ -107,15 +95,12 @@ const ProductDetailsScreen = (props: Props) => {
           <View style={styles.text_content}>
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.CODE')}</Text>
           </View>
-          <Text style={styles.text}>
-            {item?.code ? item.code : 'indefinido'}
-          </Text>
+          <Text style={styles.text}>{item?.code ? item.code : 'indefinido'}</Text>
         </View>
       </ScrollView>
 
-
       <View style={styles.footer}>
-        {flag === 'add' &&
+        {flag === 'add' && (
           <AdvancedButton
             title={'Adicionar no carrinho'}
             onPress={addCart}
@@ -124,8 +109,8 @@ const ProductDetailsScreen = (props: Props) => {
             iconSize={24}
             disabled={disabled}
           />
-        }
-        {flag === 'edit' &&
+        )}
+        {flag === 'edit' && (
           <AdvancedButton
             title={'Editar Produto'}
             onPress={redirectEdit}
@@ -133,7 +118,7 @@ const ProductDetailsScreen = (props: Props) => {
             icon="shopping-cart"
             iconSize={24}
           />
-        }
+        )}
         <AdvancedButton
           title={'voltar'}
           onPress={redirectBackOrHome}

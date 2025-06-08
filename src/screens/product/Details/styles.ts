@@ -16,7 +16,7 @@ export default StyleSheet.create({
   text: {
     color: colors.text.Primary,
     textAlign: 'justify',
-    paddingTop: 5
+    paddingTop: 5,
   },
   text_content: {
     flexDirection: 'row',
@@ -51,5 +51,5 @@ export default StyleSheet.create({
     borderColor: colors.background.Primary,
     width: '90%',
     height: 60,
-  }
+  },
 });

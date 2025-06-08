@@ -36,7 +36,7 @@ export default StyleSheet.create({
   text: {
     color: colors.text.Primary,
     textAlign: 'justify',
-    paddingTop: 5
+    paddingTop: 5,
   },
   text_content: {
     flex: 1,
