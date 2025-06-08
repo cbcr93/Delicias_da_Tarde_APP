@@ -3,6 +3,7 @@ import translate from '@services/i18n';
 import styles from '@styles/global.styles';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -13,10 +14,9 @@ interface Props {
 const InfoScreen = (props: Props) => {
   const { navigation } = props;
 
-  const redirect = () => {
-    navigation.navigate({
+  const redirectHome = () => {
+    redirect(navigation, {
       name: 'HomeStack',
-      params: {},
     });
   };
 
@@ -25,7 +25,7 @@ const InfoScreen = (props: Props) => {
       <Text style={styles.text}>{translate('PAGE.INFO.TEXT')}</Text>
       <AdvancedButton
         title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
+        onPress={redirectHome}
       />
     </View>
   );

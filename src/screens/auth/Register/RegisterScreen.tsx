@@ -9,6 +9,7 @@ import { findUserByEmail } from '@database/repositories/users';
 
 import styles from '../styles';
 import { colors } from '@themes/colors';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -68,10 +69,9 @@ const RegisterScreen = (props: Props) => {
     }
   };
 
-  const redirect = () => {
-    navigation.navigate({
+  const redirectLogin = () => {
+    redirect(navigation, {
       name: 'LoginScreen',
-      params: {},
     });
   };
 
@@ -144,7 +144,7 @@ const RegisterScreen = (props: Props) => {
       </View>
       <AdvancedButton
         title={translate('PAGE.AUTH.REGISTER_SCREEM.FORM.TO_LOGIN')}
-        onPress={redirect}
+        onPress={redirectLogin}
         style={styles.button_Text}
         textColor={colors.text.Primary}
       />

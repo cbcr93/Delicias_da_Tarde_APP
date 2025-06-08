@@ -1,10 +1,9 @@
 import { NavigationProp, NavigationState } from '@react-navigation/native';
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { redirect } from '@routes/Redirect';
 import translate from '@services/i18n';
 import { AdvancedButton } from '@components/index';
 import styles from './styles';
-import { RootStackParamList } from '@models/types';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

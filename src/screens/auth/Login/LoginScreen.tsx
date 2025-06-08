@@ -8,6 +8,7 @@ import { useAuth } from '@contexts/AuthContext';
 
 import styles from '../styles';
 import { colors } from '@themes/colors';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -53,17 +54,11 @@ const LoginScreen = (props: Props) => {
   };
 
   const redirectRegiste = () => {
-    navigation.navigate({
-      name: 'RegisterScreen',
-      params: {},
-    });
+    redirect(navigation, { name: 'RegisterScreen' });
   };
 
   const redirectForgotPass = () => {
-    navigation.navigate({
-      name: 'ForgotPasswordScreen',
-      params: {},
-    });
+    redirect(navigation, { name: 'ForgotPasswordScreen' });
   };
 
   useEffect(() => {
@@ -76,10 +71,7 @@ const LoginScreen = (props: Props) => {
 
   useEffect(() => {
     handleBiometricLogin(() => {
-      navigation.navigate({
-        name: 'HomeDrawer',
-        params: {},
-      });
+      redirect(navigation, { name: 'HomeDrawer' });
     });
   }, []);
 

@@ -9,6 +9,7 @@ import { useAuth } from '@contexts/AuthContext';
 
 import styles from './VerifyAndChangePasswordScreenStyles';
 import { colors } from '@themes/colors';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -51,6 +52,12 @@ const VerifyAndChangePasswordScreen = (props: Props) => {
     }
   }, [password, confirmPassword, oldPassword]);
 
+  const redirectProfile = () => {
+    redirect(navigation, {
+      name: 'ProfileScreen',
+    });
+  };
+
   const handleResetPassword = async () => {
     console.log('email: ', { email: user?.email });
     if (!user?.email) {
@@ -71,23 +78,14 @@ const VerifyAndChangePasswordScreen = (props: Props) => {
 
       Alert.alert('Senha atualizada com sucesso!');
 
-      navigation.navigate({
-        name: 'ProfileScreen',
-        params: {},
-      });
+      redirectProfile();
+
       // eslint-disable-next-line
     } catch (e) {
       Alert.alert('Erro', 'Não foi possível alterar a senha.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const redirect = () => {
-    navigation.navigate({
-      name: 'ProfileScreen',
-      params: {},
-    });
   };
 
   const renderCriteria = (label: string, valid: boolean) => (
@@ -167,7 +165,7 @@ const VerifyAndChangePasswordScreen = (props: Props) => {
       </View>
       <AdvancedButton
         title={translate('PAGE.PROFILE.VERIFY_CHANGE_PASS_SCREEN.FORM.TO_PROFILE')}
-        onPress={redirect}
+        onPress={redirectProfile}
         style={styles.button_Text}
         textColor={colors.text.Primary}
       />

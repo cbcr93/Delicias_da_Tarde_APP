@@ -7,6 +7,7 @@ import { colors } from '@themes/colors';
 import { getUserStatusText, getUserTypeText } from '@enum/users';
 
 import styles from './ProfileScreenStyles';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -28,9 +29,8 @@ const ProfileScreen = (props: Props) => {
       return;
     }
 
-    navigation.navigate({
+    redirect(navigation, {
       name: 'VerifyAndChangePasswordScreen',
-      params: {},
     });
   };
 
