@@ -7,10 +7,10 @@ import { isStrongPassword } from '@utils/validators';
 import * as authServices from '@services/auth';
 import * as FormatUtils from '@utils/formatters';
 import { useAuth } from '@contexts/AuthContext';
-
-import styles from '../styles';
 import { colors } from '@themes/colors';
 import { redirect } from '@routes/Redirect';
+
+import styles from '../styles';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

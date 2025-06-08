@@ -3,6 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { redirect } from '@routes/Redirect';
 import translate from '@services/i18n';
 import { AdvancedButton } from '@components/index';
+
 import styles from './styles';
 
 interface Props {

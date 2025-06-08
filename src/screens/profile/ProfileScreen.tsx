@@ -5,9 +5,9 @@ import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { useAuth } from '@contexts/AuthContext';
 import { colors } from '@themes/colors';
 import { getUserStatusText, getUserTypeText } from '@enum/users';
+import { redirect } from '@routes/Redirect';
 
 import styles from './ProfileScreenStyles';
-import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

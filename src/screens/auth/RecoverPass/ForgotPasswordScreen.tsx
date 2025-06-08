@@ -6,10 +6,10 @@ import translate from '@services/i18n';
 import { isValidEmail } from '@utils/validators';
 import { findUserByEmail } from '@database/repositories/users';
 import * as authServices from '@services/auth';
-
-import styles from '../styles';
 import { colors } from '@themes/colors';
 import { redirect } from '@routes/Redirect';
+
+import styles from '../styles';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

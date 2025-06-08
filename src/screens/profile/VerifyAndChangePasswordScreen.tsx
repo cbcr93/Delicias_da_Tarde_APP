@@ -6,10 +6,10 @@ import translate from '@services/i18n';
 import { isStrongPassword } from '@utils/validators';
 import * as authServices from '@services/auth';
 import { useAuth } from '@contexts/AuthContext';
-
-import styles from './VerifyAndChangePasswordScreenStyles';
 import { colors } from '@themes/colors';
 import { redirect } from '@routes/Redirect';
+
+import styles from './VerifyAndChangePasswordScreenStyles';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

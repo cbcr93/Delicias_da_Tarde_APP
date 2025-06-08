@@ -15,7 +15,6 @@ import GeneralReportScreen from '@screens/report/General/GeneralReportScreen';
 import CartScreen from '@screens/sale/Cart/CartScreen';
 import ConfirmCartScreen from '@screens/sale/Cart/ConfirmCartScreen';
 import RegisterSalesScreen from '@screens/sale/RegisterSales/RegisterSalesScreen';
-import SettingsScreen from '@screens/settings/SettingsScreen';
 
 export const HomeStrackRecord: Record<string, StackScreenConfig> = {
   Home: {
