@@ -8,6 +8,8 @@ import { findUserByEmail } from '@database/repositories/users';
 import * as authServices from '@services/auth';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -51,12 +53,13 @@ const ForgotPasswordScreen = (props: Props) => {
         'Verifique seu e-mail (ou console) e insira o código na próxima tela.',
       );
 
-      navigation.navigate({
+      redirect(navigation, {
         name: 'VerifyRecoveryCodeScreen',
         params: {
           options: { email: email.trim() },
-        },
+        }
       });
+
       // eslint-disable-next-line
     } catch (e) {
       Alert.alert('Erro', 'Não foi possível enviar o código de recuperação.');
@@ -64,10 +67,9 @@ const ForgotPasswordScreen = (props: Props) => {
       setLoading(false);
     }
   };
-  const redirect = () => {
-    navigation.navigate({
+  const redirectLogin = () => {
+    redirect(navigation, {
       name: 'LoginScreen',
-      params: {},
     });
   };
 
@@ -101,8 +103,9 @@ const ForgotPasswordScreen = (props: Props) => {
       </View>
       <AdvancedButton
         title={translate('PAGE.AUTH.RECOVE_PASS.FORGOT_PASS_SCREEM.FORM.TO_LOGIN')}
-        onPress={redirect}
+        onPress={redirectLogin}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

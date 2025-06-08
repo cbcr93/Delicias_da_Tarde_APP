@@ -1,8 +1,8 @@
 import { Text, View } from 'react-native';
-import { NavigationProp, NavigationState } from '@react-navigation/native';
-import { AdvancedButton } from '@components/AdvancedButton';
 import translate from '@services/i18n';
 import styles from '@styles/global.styles';
+import { AdvancedButton } from '@components/AdvancedButton';
+import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   };
 }
 
-const SettingsScreen = (props: Props) => {
+const ProductDetailsScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirectHome = () => {
@@ -22,13 +22,10 @@ const SettingsScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.SETTINGS.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirectHome}
-      />
+      <Text style={styles.text}>{translate('PAGE.PRODUCT.DETAILS.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirectHome} />
     </View>
   );
 };
 
-export default SettingsScreen;
+export default ProductDetailsScreen;

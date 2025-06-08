@@ -17,18 +17,20 @@ export const colors = {
   },
 
   text: {
-    Primary: '#f5f5f5',
+    Primary: '#358F37',
     Secondary: '#333333',
-    Tertiarsy: '#2851a0',
+    Tertiary: '#F5F5F5',
+    Quaternary: '#F5F5F5',
     Semantic: '#e1f5fe',
     Danger: '#FF6E6E',
     BlueLight: '#26B8D8',
   },
 
   brand: {
-    Primary: '#181818',
-    Secondary: '#585555',
-    Tertiary: '#edeaea',
+    Primary: '#F5F5F5',
+    Secondary: '#6B1C34',
+    Tertiary: '#358F37',
+    Quaternary: '#F5F5F5',
     Info: '#e1f5fe',
     Success: '#29b502',
     Danger: '#ED2727',
@@ -38,15 +40,16 @@ export const colors = {
   },
 
   background: {
-    Primary: '#050000',
-    Secondary: '#8C8C8C',
-    Tertiary: '#2851a0',
+    Primary: '#F5F5F5',
+    Secondary: '#6B1C34',
+    Tertiary: '#358F37',
+    Quaternary: '#F5F5F5',
   },
 
   components: {
     bannerDark: '#3E3C3C',
-    bottomPrimary: '#007AFF',
-    bottomSecondary: '#323132',
+    bottomPrimary: '#F5F5F5',
+    bottomSecondary: '#358F37',
     content: '#F8F8F8',
     contentDark: '#363636',
     InputDescription: '#605F5F',

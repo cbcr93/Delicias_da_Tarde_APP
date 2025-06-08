@@ -3,6 +3,7 @@ import translate from '@services/i18n';
 import styles from '@styles/global.styles';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -10,25 +11,21 @@ interface Props {
   };
 }
 
-const AboutScreen = (props: Props) => {
+const ConfirmCartScreen = (props: Props) => {
   const { navigation } = props;
 
-  const redirect = () => {
-    navigation.navigate({
-      name: 'HomeTab',
-      params: {},
+  const redirectHome = () => {
+    redirect(navigation, {
+      name: 'Home',
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.ABOUT.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
-      />
+      <Text style={styles.text}>{translate('PAGE.SALES.CONFIRM.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirectHome} />
     </View>
   );
 };
 
-export default AboutScreen;
+export default ConfirmCartScreen;

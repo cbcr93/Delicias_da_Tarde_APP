@@ -4,15 +4,15 @@ import { fontScale } from '@services/dimensions';
 
 export default StyleSheet.create({
   containerBig: {
-    borderColor: colors.black,
+    borderColor: colors.brand.Tertiary,
     alignItems: 'center',
   },
   containerSmall: {
-    borderColor: colors.black,
+    borderColor: colors.brand.Tertiary,
     alignItems: 'center',
   },
   primaryContainer: {
-    borderWidth: 1,
+    borderWidth: 3,
     borderRadius: 10,
   },
   secondaryContainer: {
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     height: 25,
     paddingRight: 10,
     paddingLeft: 10,
-    color: colors.text.Primary,
+    color: colors.text.Tertiary,
     fontWeight: '900',
     fontSize: fontScale(12),
     lineHeight: fontScale(25),

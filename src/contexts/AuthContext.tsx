@@ -76,6 +76,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const credentials = await authServices.getBiometricCredentials();
 
       if (!credentials) {
+        await authServices.disableBiometric();
         Alert.alert('Credenciais não encontradas');
         return;
       }

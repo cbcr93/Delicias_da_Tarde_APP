@@ -20,6 +20,7 @@ interface Props {
   height?: number;
   rounded?: boolean;
   icon?: string;
+  iconSize?: number;
   image?: ReactElement;
   backgroundColor?: string;
   textColor?: string;
@@ -39,9 +40,10 @@ export const AdvancedButton = (props: Props) => {
     height = 50,
     rounded = false,
     icon,
+    iconSize = 15,
     image,
-    backgroundColor = colors.components.bottomPrimary,
-    textColor = colors.text.Primary,
+    backgroundColor = colors.components.bottomSecondary,
+    textColor = colors.text.Tertiary,
     loading = false,
     disabled = false,
     style,
@@ -74,8 +76,8 @@ export const AdvancedButton = (props: Props) => {
         <>
           {image && image}
           {icon && (
-            <View style={{ marginRight: title ? 8 : 0 }}>
-              {AdvancedIcon('Feather', icon, 15, '#eee')}
+            <View>
+              {AdvancedIcon('Feather', icon, iconSize, textColor)}
             </View>
           )}
           {title && (
@@ -83,8 +85,8 @@ export const AdvancedButton = (props: Props) => {
               style={[
                 size !== 'big' ? [styles.label, styles.labelSmall] : styles.label,
                 styles.text,
-                textStyle,
                 { color: textColor },
+                textStyle,
               ]}
             >
               {title}

@@ -9,6 +9,8 @@ import * as FormatUtils from '@utils/formatters';
 import { useAuth } from '@contexts/AuthContext';
 
 import styles from '../styles';
+import { colors } from '@themes/colors';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -54,6 +56,12 @@ const VerifyRecoveryCodeScreen = (props: Props) => {
     }
   }, [password, confirmPassword, code]);
 
+  const redirectLogin = () => {
+    redirect(navigation, {
+      name: 'LoginScreen',
+    });
+  };
+
   const handleResetPassword = async () => {
     if (!email) {
       Alert.alert('Este email não encontrado.');
@@ -74,23 +82,14 @@ const VerifyRecoveryCodeScreen = (props: Props) => {
 
       Alert.alert('Senha atualizada com sucesso!');
 
-      navigation.navigate({
-        name: 'LoginScreen',
-        params: {},
-      });
+      redirectLogin();
+
       // eslint-disable-next-line
     } catch (e) {
       Alert.alert('Erro', 'Não foi possível redefinir a senha.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const redirect = () => {
-    navigation.navigate({
-      name: 'LoginScreen',
-      params: {},
-    });
   };
 
   const renderCriteria = (label: string, valid: boolean) => (
@@ -176,8 +175,9 @@ const VerifyRecoveryCodeScreen = (props: Props) => {
       </View>
       <AdvancedButton
         title={translate('PAGE.AUTH.RECOVE_PASS.VERIFY_RECOVERY_CODE_SCREEN.FORM.TO_LOGIN')}
-        onPress={redirect}
+        onPress={redirectLogin}
         style={styles.button_Text}
+        textColor={colors.text.Primary}
       />
     </View>
   );

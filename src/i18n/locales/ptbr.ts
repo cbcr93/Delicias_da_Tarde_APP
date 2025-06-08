@@ -1,8 +1,5 @@
 export default {
   PAGE: {
-    ABOUT: {
-      TEXT: 'Sobre min!',
-    },
     AUTH: {
       REGISTER_SCREEM: {
         TITLE: 'Cadastre',
@@ -56,24 +53,33 @@ export default {
         },
       },
     },
-    CONTACT: {
-      TEXT: 'Contatos',
-    },
-    DETAILS: {
-      TEXT: 'Detalhes',
-      TEXT_NAME: 'Detalhes da tela: ',
-    },
     HOME: {
       TEXT: 'Minha Home',
+      BUTTONS: {
+        REGISTER: 'Menu',
+        STOCK: 'Estoque',
+        REPORT: 'Relatório',
+        CART: 'Carrinho',
+        ADD_PRODUCT: 'Adicionar Produto',
+      },
     },
     INFO: {
       TEXT: 'Informações',
     },
-    NOTIFICATION: {
-      TEXT: 'Notificação',
-    },
-    PLUS: {
-      TEXT: 'Adicionar',
+    PRODUCT: {
+      TEXT: 'Produtos',
+      ADD_OR_EDIT_SCREEN: {
+        TEXT: 'Cadastrar/Editar produto',
+        ADD: 'Cadastrar produto',
+        EDIT: 'Editar produto',
+      },
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
+      STOCK: {
+        TEXT: 'Estoque',
+      },
     },
     PROFILE: {
       TEXT: 'Usuário',
@@ -99,8 +105,34 @@ export default {
         },
       },
     },
+    REPORT: {
+      TEXT: 'Relatório',
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
+      GENERAL: {
+        TEXT: 'Relatório Geral',
+      },
+    },
     SETTINGS: {
       TEXT: 'Configuração',
+    },
+    SALES: {
+      TEXT: 'Registro de Compras',
+      CART: {
+        TEXT: 'Carrinho',
+      },
+      CONFIRM: {
+        TEXT: 'Compra Concluída',
+      },
+      REGISTER: {
+        TEXT: 'Compra Concluída',
+      },
+      DETAILS: {
+        TEXT: 'Detalhes',
+        TEXT_NAME: 'Detalhes da tela: ',
+      },
     },
   },
   COMPONENTS: {
@@ -125,25 +157,12 @@ export default {
     UNKNOWN_ERROR: 'Erro desconhecido.',
   },
   ROUTER: {
-    ABOUT: {
-      TEXT: 'Sobre min!',
-      KEY: 'about',
-      NAME: 'Sobre',
-      ICON: 'smile',
-      BUTTON_SEND_NAVIGATION: 'Ir para Sobre min!',
-    },
-    CONTACT: {
-      TEXT: 'Contatos',
-      KEY: 'contact',
-      NAME: 'Contatos',
-      ICON: 'phone',
-      BUTTON_SEND_NAVIGATION: 'Ir para Contatos',
-    },
     DETAILS: {
       TEXT: 'Detalhes',
       KEY: 'details',
       TYPE: 'Feather',
       NAME: 'Detalhes',
+      HEADER: '',
       ICON: 'archive',
       BUTTON_SEND_NAVIGATION: 'Ir para Detalhes',
     },
@@ -152,6 +171,7 @@ export default {
       KEY: 'home',
       TYPE: 'Feather',
       NAME: 'Minha Home',
+      HEADER: '',
       ICON: 'home',
       BUTTON_SEND_NAVIGATION: 'Ir para Minha Home',
     },
@@ -160,6 +180,7 @@ export default {
       KEY: 'HomeStack',
       TYPE: 'Feather',
       NAME: 'Minha Home',
+      HEADER: '',
       ICON: 'home',
       BUTTON_SEND_NAVIGATION: 'Ir para Minha Home',
     },
@@ -168,6 +189,7 @@ export default {
       KEY: 'HomeTab',
       TYPE: 'Feather',
       NAME: 'Minha Home',
+      HEADER: '',
       ICON: 'home',
       BUTTON_SEND_NAVIGATION: 'Ir para Minha Home',
     },
@@ -176,38 +198,25 @@ export default {
       KEY: 'info',
       TYPE: 'Feather',
       NAME: 'Informações',
+      HEADER: '',
       ICON: 'info',
       BUTTON_SEND_NAVIGATION: 'Ir para Informações',
-    },
-    NOTIFICATION: {
-      TEXT: 'Notificação',
-      KEY: 'notification',
-      TYPE: 'Feather',
-      NAME: 'Notificação',
-      ICON: 'mail',
-      BUTTON_SEND_NAVIGATION: 'Ir para Notificação',
     },
     PROFILESTACK: {
       TEXT: 'Usuário',
       KEY: 'profile',
       TYPE: 'Feather',
       NAME: 'Usuário',
+      HEADER: '',
       ICON: 'user',
       BUTTON_SEND_NAVIGATION: 'Usuário',
-    },
-    PLUS: {
-      TEXT: 'Adicionar',
-      KEY: 'plus',
-      TYPE: 'Feather',
-      NAME: 'Adicionar',
-      ICON: 'plus-circle',
-      BUTTON_SEND_NAVIGATION: 'Ir para Adicionar',
     },
     SETTINGS: {
       TEXT: 'Configuração',
       KEY: 'settings',
       TYPE: 'Feather',
       NAME: 'Configuração',
+      HEADER: '',
       ICON: 'settings',
       BUTTON_SEND_NAVIGATION: 'Ir para Configuração',
     },

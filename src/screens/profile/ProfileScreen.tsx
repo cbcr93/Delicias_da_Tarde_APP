@@ -7,6 +7,7 @@ import { colors } from '@themes/colors';
 import { getUserStatusText, getUserTypeText } from '@enum/users';
 
 import styles from './ProfileScreenStyles';
+import { redirect } from '@routes/Redirect';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -28,9 +29,8 @@ const ProfileScreen = (props: Props) => {
       return;
     }
 
-    navigation.navigate({
+    redirect(navigation, {
       name: 'VerifyAndChangePasswordScreen',
-      params: {},
     });
   };
 
@@ -67,7 +67,12 @@ const ProfileScreen = (props: Props) => {
       <AdvancedButton
         title="Sair"
         onPress={handleLogout}
-        style={{ ...styles.buttonContainer, backgroundColor: colors.brand.Danger }}
+        style={{
+          ...styles.buttonContainer,
+          backgroundColor: colors.brand.Secondary,
+          borderColor: colors.brand.Secondary,
+        }}
+        textColor={colors.text.Tertiary}
       />
     </View>
   );
