@@ -10,25 +10,22 @@ interface Props {
   };
 }
 
-const NotificationScreen = (props: Props) => {
+const ConfirmCartScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirect = () => {
     navigation.navigate({
-      name: 'HomeStack',
+      name: 'Home',
       params: {},
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.NOTIFICATION.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
-      />
+      <Text style={styles.text}>{translate('PAGE.SALES.CART.CONFIRM_SCREEN.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );
 };
 
-export default NotificationScreen;
+export default ConfirmCartScreen;

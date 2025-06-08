@@ -4,7 +4,6 @@ import LoginScreen from '@screens/auth/Login/LoginScreen';
 import ForgotPasswordScreen from '@screens/auth/RecoverPass/ForgotPasswordScreen';
 import VerifyRecoveryCodeScreen from '@screens/auth/RecoverPass/VerifyRecoveryCodeScreen ';
 import RegisterScreen from '@screens/auth/Register/RegisterScreen';
-import DetailsScreen from '@screens/details/DetailsScreen';
 import HomeScreen from '@screens/home/HomeScreen';
 import ProfileScreen from '@screens/profile/ProfileScreen';
 import VerifyAndChangePasswordScreen from '@screens/profile/VerifyAndChangePasswordScreen';
@@ -12,10 +11,6 @@ import VerifyAndChangePasswordScreen from '@screens/profile/VerifyAndChangePassw
 export const HomeStrackRecord: Record<string, StackScreenConfig> = {
   Home: {
     component: HomeScreen,
-    isPrivate: true,
-  },
-  Details: {
-    component: DetailsScreen,
     isPrivate: true,
   },
 };

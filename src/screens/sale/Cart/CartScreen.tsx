@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const DetailsScreen = (props: Props) => {
+const CartScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirect = () => {
@@ -22,10 +22,10 @@ const DetailsScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.DETAILS.TEXT')}</Text>
+      <Text style={styles.text}>{translate('PAGE.SALES.CART.TEXT')}</Text>
       <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );
 };
 
-export default DetailsScreen;
+export default CartScreen;

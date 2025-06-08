@@ -10,24 +10,22 @@ interface Props {
   };
 }
 
-const ContactScreen = (props: Props) => {
+const AddOrEditProductScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirect = () => {
     navigation.navigate({
-      name: 'HomeTab',
+      name: 'Home',
       params: {},
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.CONTACT.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
-      />
+      <Text style={styles.text}>{translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );
 };
-export default ContactScreen;
+
+export default AddOrEditProductScreen;

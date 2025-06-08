@@ -10,25 +10,22 @@ interface Props {
   };
 }
 
-const AboutScreen = (props: Props) => {
+const RegisterSalesScreen = (props: Props) => {
   const { navigation } = props;
 
   const redirect = () => {
     navigation.navigate({
-      name: 'HomeTab',
+      name: 'Home',
       params: {},
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.ABOUT.TEXT')}</Text>
-      <AdvancedButton
-        title={translate('ROUTER.HOMETAB.BUTTON_SEND_NAVIGATION')}
-        onPress={redirect}
-      />
+      <Text style={styles.text}>{translate('PAGE.SALES.REGISTER.TEXT')}</Text>
+      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );
 };
 
-export default AboutScreen;
+export default RegisterSalesScreen;

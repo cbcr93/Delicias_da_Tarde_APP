@@ -125,21 +125,6 @@ export default {
     UNKNOWN_ERROR: 'Erro desconhecido.',
   },
   ROUTER: {
-    ABOUT: {
-      TEXT: 'Sobre min!',
-      KEY: 'about',
-      NAME: 'Sobre',
-      ICON: 'smile',
-      BUTTON_SEND_NAVIGATION: 'Ir para Sobre min!',
-    },
-    CONTACT: {
-      TEXT: 'Contatos',
-      KEY: 'contact',
-      NAME: 'Contatos',
-      HEADER: '',
-      ICON: 'phone',
-      BUTTON_SEND_NAVIGATION: 'Ir para Contatos',
-    },
     DETAILS: {
       TEXT: 'Detalhes',
       KEY: 'details',
@@ -185,15 +170,6 @@ export default {
       ICON: 'info',
       BUTTON_SEND_NAVIGATION: 'Ir para Informações',
     },
-    NOTIFICATION: {
-      TEXT: 'Notificação',
-      KEY: 'notification',
-      TYPE: 'Feather',
-      NAME: 'Notificação',
-      HEADER: '',
-      ICON: 'mail',
-      BUTTON_SEND_NAVIGATION: 'Ir para Notificação',
-    },
     PROFILESTACK: {
       TEXT: 'Usuário',
       KEY: 'profile',
@@ -202,15 +178,6 @@ export default {
       HEADER: '',
       ICON: 'user',
       BUTTON_SEND_NAVIGATION: 'Usuário',
-    },
-    PLUS: {
-      TEXT: 'Adicionar',
-      KEY: 'plus',
-      TYPE: 'Feather',
-      NAME: 'Adicionar',
-      HEADER: '',
-      ICON: 'plus-circle',
-      BUTTON_SEND_NAVIGATION: 'Ir para Adicionar',
     },
     SETTINGS: {
       TEXT: 'Configuração',
