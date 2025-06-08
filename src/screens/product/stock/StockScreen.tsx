@@ -23,7 +23,10 @@ const StockScreen = (props: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{translate('PAGE.PRODUCT.STOCK.TEXT')}</Text>
-      <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirectHome} />
+      <AdvancedButton
+        title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')}
+        onPress={redirectHome}
+      />
     </View>
   );
 };

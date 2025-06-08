@@ -29,7 +29,7 @@ export default StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
   },
   buttonText: {
     fontWeight: 'bold',

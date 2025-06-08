@@ -75,11 +75,7 @@ export const AdvancedButton = (props: Props) => {
       ) : (
         <>
           {image && image}
-          {icon && (
-            <View>
-              {AdvancedIcon('Feather', icon, iconSize, textColor)}
-            </View>
-          )}
+          {icon && <View>{AdvancedIcon('Feather', icon, iconSize, textColor)}</View>}
           {title && (
             <Text
               style={[

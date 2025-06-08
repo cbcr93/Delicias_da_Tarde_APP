@@ -57,7 +57,7 @@ const ForgotPasswordScreen = (props: Props) => {
         name: 'VerifyRecoveryCodeScreen',
         params: {
           options: { email: email.trim() },
-        }
+        },
       });
 
       // eslint-disable-next-line
