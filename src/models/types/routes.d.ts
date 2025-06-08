@@ -1,3 +1,5 @@
+import * as models from '@models/types';
+
 export interface DrawerScreenConfig {
   // eslint-disable-next-line
   component: ComponentType<any>;
@@ -27,7 +29,7 @@ export type RootStackParamList = {
   HomeTab: { name?: string; options?: object };
   HomeStack: { name?: string; options?: object };
   AddOrEditProductScreen: { name?: string; options?: object };
-  ProductDetailsScreen: { name?: string; options?: object };
+  ProductDetailsScreen: { name?: string; options?: { flag?: string | null | undefined, item?: models.IProduct | null | undefined } };
   StockScreen: { name?: string; options?: object };
   CartScreen: { name?: string; options?: object };
   ConfirmCartScreen: { name?: string; options?: object };
