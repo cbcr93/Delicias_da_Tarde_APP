@@ -22,7 +22,7 @@ const ProductDetailsScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('PAGE.PRODUCT.DETAILS_SCREEN.TEXT')}</Text>
+      <Text style={styles.text}>{translate('PAGE.PRODUCT.DETAILS.TEXT')}</Text>
       <AdvancedButton title={translate('ROUTER.HOME.BUTTON_SEND_NAVIGATION')} onPress={redirect} />
     </View>
   );

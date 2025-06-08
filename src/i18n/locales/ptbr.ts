@@ -123,6 +123,9 @@ export default {
       CONFIRM: {
         TEXT: 'Compra Concluída',
       },
+      REGISTER: {
+        TEXT: 'Compra Concluída',
+      },
       DETAILS: {
         TEXT: 'Detalhes',
         TEXT_NAME: 'Detalhes da tela: ',
