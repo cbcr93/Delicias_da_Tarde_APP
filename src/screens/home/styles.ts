@@ -1,31 +1,42 @@
+import { fontScale } from '@services/dimensions';
 import { colors } from '@themes/colors';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    padding: 20,
     flex: 1,
     backgroundColor: colors.background.Primary,
-    justifyContent: 'space-between',
   },
   title: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginTop: 20,
     textAlign: 'center',
     color: colors.text.Primary,
   },
   content: {
-    flexGrow: 1,
     marginTop: 20,
+    flexGrow: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   buttonContainer: {
     margin: 10,
-    width: 140,
-    height: 100,
-    borderRadius: 20
+    width: 150,
+    height: 120,
+    borderRadius: 20,
+    marginBottom: 20,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    lineHeight: fontScale(16),
+    textAlignVertical: 'center',
+    width: 120,
+    height: 50,
+    // color: colors.text.Primary,
   },
 });

@@ -55,9 +55,12 @@ export default {
     },
     HOME: {
       TEXT: 'Minha Home',
-      DETAILS: {
-        TEXT: 'Detalhes',
-        TEXT_NAME: 'Detalhes da tela: ',
+      BUTTONS: {
+        REGISTER: 'Menu',
+        STOCK: 'Estoque',
+        REPORT: 'Relatório',
+        CART: 'Carrinho',
+        ADD_PRODUCT: 'Adicionar Produto',
       },
     },
     INFO: {
