@@ -128,6 +128,12 @@ export default {
       },
       REGISTER: {
         TEXT: 'Compra Concluída',
+        SEARCH: 'Pesquisa',
+        NAME: 'Nome:',
+        DESCRIPTION: 'Descrição:',
+        TYPE: 'Categoria:',
+        PRICE: 'Preço:',
+        TO_CART: 'Ir para o Carrinho:',
       },
       DETAILS: {
         TEXT: 'Detalhes',
