@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const bootstrap = async () => {
+    /* const bootstrap = async () => {
       const enabled = await authServices.isBiometricEnabled();
 
       if (enabled) {
@@ -39,7 +39,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       setIsLoading(false);
     };
-    bootstrap();
+    bootstrap(); */
+    const loadSession = async () => {
+      await authServices.loadSession();
+
+      setIsLoading(false);
+    };
+    loadSession();
   }, []);
 
   const logout = async () => {

@@ -7,6 +7,7 @@ import { isValidEmail } from '@utils/validators';
 import { useAuth } from '@contexts/AuthContext';
 import { colors } from '@themes/colors';
 import { redirect } from '@routes/Redirect';
+import * as authServices from '@services/auth';
 
 import styles from '../styles';
 
@@ -69,10 +70,26 @@ const LoginScreen = (props: Props) => {
     }
   }, [email, password]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     handleBiometricLogin(() => {
       redirect(navigation, { name: 'HomeDrawer' });
     });
+  }, []); */
+
+  useEffect(() => {
+    const tryBiometric = async () => {
+      const enabled = await authServices.isBiometricEnabled();
+      if (!enabled) return;
+
+      await handleBiometricLogin(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'HomeDrawer' }],
+        });
+      });
+    };
+
+    tryBiometric();
   }, []);
 
   const renderIcon = (onPress: (() => void) | undefined, show: boolean) => (

@@ -41,4 +41,8 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
   },
+  switchBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
