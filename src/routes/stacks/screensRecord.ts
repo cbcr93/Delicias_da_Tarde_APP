@@ -10,7 +10,7 @@ import ProductDetailsScreen from '@screens/product/Details/ProductDetailsScreen'
 import StockScreen from '@screens/product/stock/StockScreen';
 import ProfileScreen from '@screens/profile/ProfileScreen';
 import VerifyAndChangePasswordScreen from '@screens/profile/VerifyAndChangePasswordScreen';
-import DetailsReportScreen from '@screens/report/Details/RegisterSalesScreen';
+import DetailsReportScreen from '@screens/report/Details/DetailsReportScreen';
 import GeneralReportScreen from '@screens/report/General/GeneralReportScreen';
 import CartScreen from '@screens/sale/Cart/CartScreen';
 import ConfirmCartScreen from '@screens/sale/Cart/ConfirmCartScreen';

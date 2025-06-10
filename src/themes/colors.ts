@@ -20,7 +20,7 @@ export const colors = {
     Primary: '#358F37',
     Secondary: '#333333',
     Tertiary: '#F5F5F5',
-    Quaternary: '#F5F5F5',
+    Quaternary: '#DF891E',
     Semantic: '#e1f5fe',
     Danger: '#FF6E6E',
     BlueLight: '#26B8D8',
@@ -30,7 +30,7 @@ export const colors = {
     Primary: '#F5F5F5',
     Secondary: '#6B1C34',
     Tertiary: '#358F37',
-    Quaternary: '#F5F5F5',
+    Quaternary: '#DF891E',
     Info: '#e1f5fe',
     Success: '#29b502',
     Danger: '#ED2727',
@@ -43,7 +43,7 @@ export const colors = {
     Primary: '#F5F5F5',
     Secondary: '#6B1C34',
     Tertiary: '#358F37',
-    Quaternary: '#F5F5F5',
+    Quaternary: '#DF891E',
   },
 
   components: {

@@ -28,6 +28,7 @@ interface Props {
   disabled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  iconStyle?: ViewStyle;
   type?: 'primary' | 'secondary';
   size?: 'big' | 'small';
 }
@@ -48,6 +49,7 @@ export const AdvancedButton = (props: Props) => {
     disabled = false,
     style,
     textStyle,
+    iconStyle,
     type = 'primary',
     size = 'big',
   } = props;
@@ -75,7 +77,9 @@ export const AdvancedButton = (props: Props) => {
       ) : (
         <>
           {image && image}
-          {icon && <View>{AdvancedIcon('Feather', icon, iconSize, textColor)}</View>}
+          {icon && (
+            <View style={iconStyle}>{AdvancedIcon('Feather', icon, iconSize, textColor)}</View>
+          )}
           {title && (
             <Text
               style={[

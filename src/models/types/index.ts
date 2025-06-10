@@ -1,4 +1,5 @@
 export * from './item';
-export * from './routes';
 export * from './module';
+export * from './product';
+export * from './routes';
 export * from './user';
