@@ -1,6 +1,5 @@
 import { Text, View } from 'react-native';
 import translate from '@services/i18n';
-import styles from './CartScreenStyles';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
@@ -9,6 +8,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 import { colors } from '@themes/colors';
 import { AdvancedButton, CardCartSale } from '@components/index';
+
+import styles from './CartScreenStyles';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
