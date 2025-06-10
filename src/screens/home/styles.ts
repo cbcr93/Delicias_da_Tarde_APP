@@ -1,11 +1,11 @@
 import { fontScale } from '@services/dimensions';
 import { colors } from '@themes/colors';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
   },
   title: {
     fontSize: 20,
@@ -30,6 +30,17 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
+    shadowColor: colors.black, // cor da sombra
+    shadowOffset: {
+      width: 5, // deslocamento horizontal da sombra
+      height: 5, // deslocamento vertical da sombra
+    },
+    shadowOpacity: 0.8, // opacidade da sombra (0 a 1)
+    shadowRadius: 20,
+    // Para Android, use elevation em vez de shadowOffset, shadowOpacity, shadowRadius
+    ...(Platform.OS === 'android' && {
+      elevation: 5,
+    }),
   },
   buttonText: {
     fontWeight: 'bold',

@@ -39,13 +39,6 @@ export const colors = {
     Warning: '#FBD564',
   },
 
-  background: {
-    Primary: '#F5F5F5',
-    Secondary: '#6B1C34',
-    Tertiary: '#358F37',
-    Quaternary: '#DF891E',
-  },
-
   components: {
     bannerDark: '#3E3C3C',
     bottomPrimary: '#F5F5F5',

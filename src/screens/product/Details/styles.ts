@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
   },
   title: {
     fontSize: 20,
@@ -46,8 +46,8 @@ export default StyleSheet.create({
   },
   button_Text: {
     color: colors.text.Primary,
-    backgroundColor: colors.background.Primary,
-    borderColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
+    borderColor: colors.brand.Primary,
     width: '90%',
     height: 60,
   },
