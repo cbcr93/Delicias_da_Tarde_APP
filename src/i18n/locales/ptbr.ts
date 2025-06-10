@@ -122,6 +122,15 @@ export default {
       TEXT: 'Registro de Compras',
       CART: {
         TEXT: 'Carrinho',
+        NAME: 'Nome:',
+        AMOUND: 'Quntidade:',
+        PRICE: 'Preço:',
+        AMOUNT: 'Quantidade em Estoque:',
+        RESUME: 'Resumo da compra',
+        AMOUNT_TOTAL: 'Quantidade total: ',
+        PRICE_TOTAL: 'Preço total: ',
+        CONFIRM: 'Confirmar',
+        CLEAR_CART: 'Limpar Carrinho',
       },
       CONFIRM: {
         TEXT: 'Compra Concluída',
