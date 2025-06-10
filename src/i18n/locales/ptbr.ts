@@ -134,6 +134,8 @@ export default {
       },
       CONFIRM: {
         TEXT: 'Compra Concluída',
+        TO_REGISTER_SALES: 'Fazer outra compra',
+        TO_HOME: 'Voltar ao Inicio',
       },
       REGISTER: {
         TEXT: 'Compra Concluída',
