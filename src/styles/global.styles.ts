@@ -3,7 +3,7 @@ import { colors } from '@themes/index';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
     flex: 1,
     width: '100%',
   },

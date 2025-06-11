@@ -28,7 +28,10 @@ export type RootStackParamList = {
   HomeDrawer: { name?: string; options?: object };
   HomeTab: { name?: string; options?: object };
   HomeStack: { name?: string; options?: object };
-  AddOrEditProductScreen: { name?: string; options?: object };
+  AddOrEditProductScreen: {
+    name?: string;
+    options?: { flag?: string | null | undefined; item?: models.IProduct | null | undefined };
+  };
   ProductDetailsScreen: {
     name?: string;
     options?: { flag?: string | null | undefined; item?: models.IProduct | null | undefined };

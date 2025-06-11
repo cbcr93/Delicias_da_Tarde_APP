@@ -19,15 +19,15 @@ export const DrawerNavigation = (props: Props) => {
         headerTitle: '',
         headerTintColor: colors.text.Tertiary,
         headerStyle: {
-          backgroundColor: colors.background.Secondary,
+          backgroundColor: colors.brand.Secondary,
         },
         drawerActiveTintColor: colors.text.Tertiary,
-        drawerActiveBackgroundColor: colors.background.Tertiary,
+        drawerActiveBackgroundColor: colors.brand.Tertiary,
         drawerLabelStyle: {
           color: colors.text.Tertiary,
         },
         drawerStyle: {
-          backgroundColor: colors.background.Secondary,
+          backgroundColor: colors.brand.Secondary,
         },
       }}
     >

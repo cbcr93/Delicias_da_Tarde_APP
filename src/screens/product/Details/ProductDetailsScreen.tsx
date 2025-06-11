@@ -115,8 +115,6 @@ const ProductDetailsScreen = (props: Props) => {
             title={'Editar Produto'}
             onPress={redirectEdit}
             style={styles.buttonContainer}
-            icon="shopping-cart"
-            iconSize={24}
           />
         )}
         <AdvancedButton

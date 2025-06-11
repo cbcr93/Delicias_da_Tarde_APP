@@ -22,10 +22,9 @@ export default StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    justifyContent: 'center',
-    borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
     padding: 20,
+    width: '100%',
+    alignItems: 'baseline'
   },
   buttonContainer: {
     width: '90%',
@@ -34,6 +33,13 @@ export default StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'center',
     alignContent: 'center',
+  },
+  button_Text: {
+    color: colors.text.Primary,
+    backgroundColor: colors.brand.Primary,
+    borderColor: colors.brand.Primary,
+    width: '90%',
+    height: 60,
   },
   footer: {
     paddingTop: 10,
@@ -44,11 +50,13 @@ export default StyleSheet.create({
     borderTopWidth: 3,
     marginBottom: 35,
   },
-  button_Text: {
-    color: colors.text.Primary,
-    backgroundColor: colors.brand.Primary,
-    borderColor: colors.brand.Primary,
-    width: '90%',
-    height: 60,
+  input: {
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  input_big: {
+    height: 120,
+    width: '100%',
+    textAlign: 'justify'
   },
 });

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
     borderColor: colors.brand.Tertiary,
     borderWidth: 3,
     padding: 3,
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
     color: colors.text.Secondary,
     paddingHorizontal: 20,
   },

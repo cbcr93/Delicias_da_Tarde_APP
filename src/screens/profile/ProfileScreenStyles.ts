@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
     justifyContent: 'space-between',
   },
   content: {

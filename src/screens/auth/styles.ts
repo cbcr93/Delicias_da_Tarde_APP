@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    backgroundColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
   },
   content: {
     flex: 1,
@@ -59,8 +59,8 @@ export default StyleSheet.create({
   },
   button_Text: {
     color: colors.text.Primary,
-    backgroundColor: colors.background.Primary,
-    borderColor: colors.background.Primary,
+    backgroundColor: colors.brand.Primary,
+    borderColor: colors.brand.Primary,
     marginBottom: 50,
   },
 });
