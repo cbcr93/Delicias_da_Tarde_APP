@@ -74,7 +74,7 @@ export const CardCartSale = (props: Props) => {
         }
         {detailsItem &&
           <AdvancedButton
-            icon={'plus-circle'}
+            icon={'eye'}
             type="primary"
             width={50}
             onPress={() => detailsItem(item as models.IProduct)}
@@ -85,7 +85,7 @@ export const CardCartSale = (props: Props) => {
         }
         {editItem &&
           <AdvancedButton
-            icon={'plus-circle'}
+            icon={'edit'}
             type="primary"
             width={50}
             onPress={() => editItem(item as models.IProduct)}

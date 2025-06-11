@@ -72,6 +72,14 @@ export default {
         TEXT: 'Cadastrar/Editar produto',
         ADD: 'Cadastrar produto',
         EDIT: 'Editar produto',
+        FORM: {
+          NAME: 'Nome do Produto:',
+          DESCRIPTION: 'Descrição:',
+          PRICE: 'Preço:',
+          AMOUNT: 'Quantidade em Estoque:',
+          TYPE: 'Categoria:',
+          CODE: 'Codigo do Produto:',
+        },
       },
       DETAILS: {
         TEXT: 'Detalhes',
