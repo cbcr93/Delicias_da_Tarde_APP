@@ -27,7 +27,7 @@ export type RootStackParamList = {
   RegisterScreen: { name?: string; options?: object };
   HomeDrawer: { name?: string; options?: object };
   HomeTab: { name?: string; options?: object };
-  HomeStack: { name?: string; options?: object };
+  HomeStack: { name?: boolean; options?: object };
   AddOrEditProductScreen: {
     name?: string;
     options?: { flag?: string | null | undefined; item?: models.IProduct | null | undefined };
@@ -37,7 +37,10 @@ export type RootStackParamList = {
     options?: { flag?: string | null | undefined; item?: models.IProduct | null | undefined };
   };
   StockScreen: { name?: string; options?: object };
-  CartScreen: { name?: string; options?: object };
+  CartScreen: {
+    name?: string;
+    options?: { flag?: string | null | undefined; item?: any | null | undefined };
+  };
   ConfirmCartScreen: { name?: string; options?: object };
   RegisterSalesScreen: { name?: string; options?: object };
   DetailsReportScreen: { name?: string; options?: object };
