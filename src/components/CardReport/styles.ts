@@ -6,7 +6,7 @@ export default StyleSheet.create({
     color: colors.text.Primary,
     textAlign: 'justify',
     paddingTop: 4,
-    marginLeft: 10
+    marginLeft: 10,
   },
   sub_title: {
     fontSize: 18,

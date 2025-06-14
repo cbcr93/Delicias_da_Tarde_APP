@@ -52,7 +52,7 @@ export default StyleSheet.create({
   },
   Icon: {
     width: 20,
-    color: colors.brand.Tertiary
+    color: colors.brand.Tertiary,
   },
   search: {
     paddingTop: 10,

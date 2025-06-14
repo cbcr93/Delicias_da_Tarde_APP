@@ -24,7 +24,7 @@ export default StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     width: '100%',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   buttonContainer: {
     width: '90%',
@@ -57,6 +57,6 @@ export default StyleSheet.create({
   input_big: {
     height: 120,
     width: '100%',
-    textAlign: 'justify'
+    textAlign: 'justify',
   },
 });

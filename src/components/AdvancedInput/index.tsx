@@ -20,10 +20,7 @@ export const AdvacedInput = (props: Props) => {
     <>
       {label && <Text style={styles.label}>{label}</Text>}
       <Pressable onPress={focusInput}>
-        <View style={[
-          styles.container,
-          viewStyle,
-        ]}>
+        <View style={[styles.container, viewStyle]}>
           {leftIcon}
           <TextInput ref={inputRef} style={styles.input} {...rest} />
           {rightIcon}

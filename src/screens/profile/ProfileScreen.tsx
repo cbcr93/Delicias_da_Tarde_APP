@@ -24,7 +24,6 @@ const ProfileScreen = (props: Props) => {
   const [isEnabledBiometry, setIsEnabledBiometry] = useState(false);
 
   const toggleSwitchBiometry = async () => {
-
     if (!isEnabledBiometry === false) {
       Alert.alert('Desativar biometria?', 'Deseja desabilitar biometria para login automático?', [
         {
@@ -39,7 +38,7 @@ const ProfileScreen = (props: Props) => {
           style: 'cancel',
         },
       ]);
-    };
+    }
 
     if (!isEnabledBiometry === true) {
       const alreadyEnabled = await authServices.isBiometricEnabled();
@@ -80,12 +79,11 @@ const ProfileScreen = (props: Props) => {
   useEffect(() => {
     const validationBiometry = async () => {
       const enabled = await authServices.isBiometricEnabled();
-      setIsEnabledBiometry(enabled)
-    }
+      setIsEnabledBiometry(enabled);
+    };
 
-    validationBiometry()
-
-  }, [isEnabledBiometry])
+    validationBiometry();
+  }, [isEnabledBiometry]);
 
   return (
     <View style={styles.container}>
@@ -110,10 +108,12 @@ const ProfileScreen = (props: Props) => {
           </Text>
 
           <View style={styles.switchBox}>
-            <Text style={styles.label}>{
-              // translate('PAGE.PROFILE.PROFILE_SCREEN.LABEL.STATUS')
-              'Biometria ativa ao logar?'
-            }</Text>
+            <Text style={styles.label}>
+              {
+                // translate('PAGE.PROFILE.PROFILE_SCREEN.LABEL.STATUS')
+                'Biometria ativa ao logar?'
+              }
+            </Text>
 
             <Switch
               trackColor={{ true: colors.gray[300], false: colors.gray[500] }}

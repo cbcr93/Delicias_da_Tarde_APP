@@ -16,7 +16,7 @@ export default StyleSheet.create({
   text_content: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%'
+    width: '100%',
   },
   buttonContainer: {
     width: '90%',

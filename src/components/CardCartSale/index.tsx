@@ -14,7 +14,7 @@ interface Props {
   removeItem?: (item: Partial<models.IProduct>) => void;
   detailsItem?: (item: models.IProduct) => void;
   editItem?: (item: models.IProduct) => void;
-  flag?: string | null
+  flag?: string | null;
 }
 export const CardCartSale = (props: Props) => {
   const { item, addMore, minusItem, removeItem, detailsItem, editItem, flag } = props;
@@ -39,9 +39,9 @@ export const CardCartSale = (props: Props) => {
           <Text style={styles.text}>{formatCurrency(Number(item.price))}</Text>
         </View>
       </View>
-      {flag !== 'edit' &&
+      {flag !== 'edit' && (
         <View style={styles.side_rigth}>
-          {(item.amount === 1 && removeItem) &&
+          {item.amount === 1 && removeItem && (
             <AdvancedButton
               icon={'trash-2'}
               type="primary"
@@ -51,8 +51,8 @@ export const CardCartSale = (props: Props) => {
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
-          }
-          {(Number(item.amount) > 1 && minusItem) &&
+          )}
+          {Number(item.amount) > 1 && minusItem && (
             <AdvancedButton
               icon={'minus-circle'}
               type="primary"
@@ -62,8 +62,8 @@ export const CardCartSale = (props: Props) => {
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
-          }
-          {addMore &&
+          )}
+          {addMore && (
             <AdvancedButton
               icon={'plus-circle'}
               type="primary"
@@ -73,8 +73,8 @@ export const CardCartSale = (props: Props) => {
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
-          }
-          {detailsItem &&
+          )}
+          {detailsItem && (
             <AdvancedButton
               icon={'eye'}
               type="primary"
@@ -84,8 +84,8 @@ export const CardCartSale = (props: Props) => {
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
-          }
-          {editItem &&
+          )}
+          {editItem && (
             <AdvancedButton
               icon={'edit'}
               type="primary"
@@ -95,9 +95,9 @@ export const CardCartSale = (props: Props) => {
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
-          }
+          )}
         </View>
-      }
+      )}
     </View>
   );
 };

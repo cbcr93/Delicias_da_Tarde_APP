@@ -17,7 +17,6 @@ interface Props {
 const ConfirmCartScreen = (props: Props) => {
   const { navigation } = props;
 
-
   const redirectHome = () => {
     redirect(navigation, { name: 'Home' });
   };

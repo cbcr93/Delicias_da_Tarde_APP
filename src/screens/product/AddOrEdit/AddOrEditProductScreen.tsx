@@ -47,8 +47,8 @@ const AddOrEditProductScreen = (props: Props) => {
       code,
     };
 
-    console.log('handleAdd', { body })
-  }
+    console.log('handleAdd', { body });
+  };
 
   const handleEdit = () => {
     const body = {
@@ -59,8 +59,8 @@ const AddOrEditProductScreen = (props: Props) => {
       type: type.trim(),
       code: code.trim(),
     };
-    console.log('handleEdit', { id: item?.id, body })
-  }
+    console.log('handleEdit', { id: item?.id, body });
+  };
 
   const disableValid = () => {
     if (flag === 'add') {
@@ -78,14 +78,13 @@ const AddOrEditProductScreen = (props: Props) => {
 
     if (flag === 'edit' && item) {
       if (
-        (
-          name !== item.name ||
+        (name !== item.name ||
           description !== item.description ||
           price.replace(/\D/g, '') !== item.price.toString().replace(/\D/g, '') ||
-          amount.replace(/\D/g, '').replace(/^0+/, '') !== item.amount.toString().replace(/\D/g, '').replace(/^0+/, '') ||
+          amount.replace(/\D/g, '').replace(/^0+/, '') !==
+            item.amount.toString().replace(/\D/g, '').replace(/^0+/, '') ||
           type !== item.type ||
-          code !== item.code
-        ) &&
+          code !== item.code) &&
         name.trim().length > 2 &&
         description.trim().length > 2 &&
         type.trim().length > 2 &&
@@ -96,7 +95,7 @@ const AddOrEditProductScreen = (props: Props) => {
         setDisableEdit(true);
       }
     }
-  }
+  };
 
   const chageValue = (value: string, key: string) => {
     switch (key) {
@@ -131,7 +130,7 @@ const AddOrEditProductScreen = (props: Props) => {
         break;
     }
     disableValid();
-  }
+  };
 
   useEffect(() => {
     if (flag === 'edit' && item) {
@@ -160,7 +159,9 @@ const AddOrEditProductScreen = (props: Props) => {
             viewStyle={styles.input}
           />
 
-          <Text style={styles.title}>{translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.DESCRIPTION')}</Text>
+          <Text style={styles.title}>
+            {translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.DESCRIPTION')}
+          </Text>
           <AdvacedInput
             value={description}
             onChangeText={(t) => chageValue(t, 'description')}
@@ -173,21 +174,24 @@ const AddOrEditProductScreen = (props: Props) => {
             style={styles.input_big}
           />
 
-          <Text style={styles.title}>{translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.PRICE')}</Text>
+          <Text style={styles.title}>
+            {translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.PRICE')}
+          </Text>
           <AdvacedInput
             value={price}
             onChangeText={(t) => chageValue(t, 'price')}
             autoCapitalize="none"
-            keyboardType='decimal-pad'
+            keyboardType="decimal-pad"
             viewStyle={styles.input}
           />
 
-          <Text style={styles.title}>{translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.AMOUNT')}</Text>
+          <Text style={styles.title}>
+            {translate('PAGE.PRODUCT.ADD_OR_EDIT_SCREEN.FORM.AMOUNT')}
+          </Text>
           <AdvacedInput
             value={amount}
             onChangeText={(t) => chageValue(t, 'amount')}
-            keyboardType='number-pad'
-
+            keyboardType="number-pad"
             autoCapitalize="none"
             viewStyle={styles.input}
           />
@@ -210,23 +214,23 @@ const AddOrEditProductScreen = (props: Props) => {
         </View>
 
         <View style={styles.footer}>
-          {flag === 'add' &&
+          {flag === 'add' && (
             <AdvancedButton
               title={translate('SHARED.SAVE')}
               onPress={handleAdd}
               style={styles.buttonContainer}
               disabled={disableAdd}
             />
-          }
+          )}
 
-          {flag === 'edit' &&
+          {flag === 'edit' && (
             <AdvancedButton
               title={translate('SHARED.EDIT')}
               onPress={handleEdit}
               style={styles.buttonContainer}
               disabled={disableEdit}
             />
-          }
+          )}
 
           <AdvancedButton
             title={translate('SHARED.BACK')}

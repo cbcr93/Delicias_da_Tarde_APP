@@ -41,25 +41,25 @@ const CartScreen = (props: Props) => {
     {
       id: 'x1',
       name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 300.00,
+      price: 300.0,
       amount: 3,
     },
     {
       id: 'x2',
       name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 400.00,
+      price: 400.0,
       amount: 4,
     },
     {
       id: 'x3',
       name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.00,
+      price: 100.0,
       amount: 1,
     },
     {
       id: 'x4',
       name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.00,
+      price: 100.0,
       amount: 1,
     },
   ];
@@ -68,25 +68,19 @@ const CartScreen = (props: Props) => {
     if (flag === 'edit' && itemDetails) {
       if (itemDetails.itens) {
         SetItens(itemDetails.itens);
-        SetTotalAmount(
-          itemDetails.itens.reduce((acc, item) => acc + (item.amount ?? 0), 0)
-        );
+        SetTotalAmount(itemDetails.itens.reduce((acc, item) => acc + (item.amount ?? 0), 0));
         SetTotalPrice(
-          itemDetails.itens.reduce((acc, item) => acc + ((item.price ?? 0) * (item.amount ?? 0)),
-            0
-          ));
+          itemDetails.itens.reduce((acc, item) => acc + (item.price ?? 0) * (item.amount ?? 0), 0),
+        );
       } else {
         SetItens([]);
       }
     }
     if (flag === 'add') {
-      SetTotalAmount(
-        exempleItens.reduce((acc, item) => acc + (item.amount ?? 0), 0)
-      );
+      SetTotalAmount(exempleItens.reduce((acc, item) => acc + (item.amount ?? 0), 0));
       SetTotalPrice(
-        exempleItens.reduce((acc, item) => acc + ((item.price ?? 0) * (item.amount ?? 0)),
-          0
-        ));
+        exempleItens.reduce((acc, item) => acc + (item.price ?? 0) * (item.amount ?? 0), 0),
+      );
       SetItens(exempleItens);
     }
   }, [itemDetails, flag]);
@@ -115,8 +109,7 @@ const CartScreen = (props: Props) => {
     console.log(item);
   };
 
-  const clearCart = () => {
-  };
+  const clearCart = () => {};
 
   return (
     <View style={styles.container}>
@@ -133,12 +126,15 @@ const CartScreen = (props: Props) => {
           />
         )}
         ListHeaderComponent={() => (
-          <View style={{
-            ...styles.footer_flat,
-            ...((itemDetails && !itemDetails.finish) && {
-              backgroundColor: colors.gray[200],
-            })
-          }}>
+          <View
+            style={{
+              ...styles.footer_flat,
+              ...(itemDetails &&
+                !itemDetails.finish && {
+                  backgroundColor: colors.gray[200],
+                }),
+            }}
+          >
             <Text style={styles.title}>{translate('PAGE.SALES.CART.RESUME')}</Text>
 
             <View style={styles.text_content}>
@@ -154,13 +150,17 @@ const CartScreen = (props: Props) => {
         )}
       />
 
-      <View style={
-        flag === 'add' ? styles.footer : {
-          ...styles.footer,
-          height: 150,
+      <View
+        style={
+          flag === 'add'
+            ? styles.footer
+            : {
+                ...styles.footer,
+                height: 150,
+              }
         }
-      }>
-        {flag === 'add' &&
+      >
+        {flag === 'add' && (
           <>
             <AdvancedButton
               title={translate('PAGE.SALES.CART.CONFIRM')}
@@ -179,11 +179,11 @@ const CartScreen = (props: Props) => {
               backgroundColor={colors.brand.Quaternary}
             />
           </>
-        }
+        )}
 
-        {(flag === 'edit' && itemDetails) &&
+        {flag === 'edit' && itemDetails && (
           <>
-            {itemDetails.finish &&
+            {itemDetails.finish && (
               <AdvancedButton
                 title={translate('PAGE.SALES.CART.FINISH_SALES_NOT')}
                 onPress={redirectConfirmCart}
@@ -193,9 +193,9 @@ const CartScreen = (props: Props) => {
                   borderColor: colors.brand.Secondary,
                 }}
               />
-            }
+            )}
 
-            {!itemDetails.finish &&
+            {!itemDetails.finish && (
               <AdvancedButton
                 title={translate('PAGE.SALES.CART.FINISH_SALES')}
                 onPress={redirectConfirmCart}
@@ -205,9 +205,9 @@ const CartScreen = (props: Props) => {
                   borderColor: colors.brand.Tertiary,
                 }}
               />
-            }
+            )}
           </>
-        }
+        )}
 
         <AdvancedButton
           title={translate('SHARED.BACK')}
