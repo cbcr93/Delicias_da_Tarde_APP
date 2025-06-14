@@ -4,11 +4,11 @@ import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
-
-import styles from './styles';
 import { useEffect, useState } from 'react';
 import { AdvacedInput } from '@components/AdvancedInput';
 import { formatCurrency } from '@utils/formatters';
+
+import styles from './styles';
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
     getState(): NavigationState | undefined;
@@ -100,29 +100,38 @@ const AddOrEditProductScreen = (props: Props) => {
   const chageValue = (value: string, key: string) => {
     switch (key) {
       case 'name':
+        // eslint-disable-next-line
         const sanitizedName = value.replace(/\s{2,}/g, ' ');
         setName(sanitizedName);
         break;
       case 'description':
+        // eslint-disable-next-line
         const sanitizedDescription = value.replace(/\s{2,}/g, ' ');
         setDescription(sanitizedDescription);
         break;
       case 'price':
+        // eslint-disable-next-line
         const onlyDigits = value.replace(/\D/g, '');
+        // eslint-disable-next-line
         const numericValue = parseInt(onlyDigits || '0', 10);
+        // eslint-disable-next-line
         const floatValue = numericValue / 100;
+        // eslint-disable-next-line
         const formatValue = formatCurrency(Number(floatValue));
         setPrice(formatValue);
         break;
       case 'amount':
+        // eslint-disable-next-line
         const onlyNumbers = value.replace(/\D/g, '').replace(/^0+/, '');
         setAmount(Number(onlyNumbers) > 0 ? onlyNumbers : '0');
         break;
       case 'type':
+        // eslint-disable-next-line
         const sanitizedType = value.replace(/\s{2,}/g, ' ');
         setType(sanitizedType);
         break;
       case 'code':
+        // eslint-disable-next-line
         const sanitizedCode = value.trim();
         setCode(sanitizedCode);
         break;

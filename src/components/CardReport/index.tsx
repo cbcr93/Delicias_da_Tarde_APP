@@ -4,9 +4,9 @@ import translate from '@services/i18n';
 import { formatCurrency, formatRelativeDate } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
+import { colors } from '@themes/colors';
 
 import styles from './styles';
-import { colors } from '@themes/colors';
 
 interface Props {
   item: {
@@ -34,7 +34,6 @@ export const CardReport = (props: Props) => {
       style={{
         ...styles.content,
         ...(!item.finish && {
-          // backgroundColor: colors.gray[200],
           borderColor: colors.brand.Failure,
         }),
       }}

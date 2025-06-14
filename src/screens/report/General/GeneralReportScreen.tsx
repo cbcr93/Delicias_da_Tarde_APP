@@ -5,11 +5,10 @@ import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
 import { FlatList } from 'react-native-gesture-handler';
-import { useEffect, useState } from 'react';
 import { formatCurrency } from '@utils/formatters';
+import { CardReport } from '@components/CardReport';
 
 import styles from './styles';
-import { CardReport } from '@components/CardReport';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

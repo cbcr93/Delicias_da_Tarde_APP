@@ -1,12 +1,10 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import translate from '@services/i18n';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
-import { formatCurrency } from '@utils/formatters';
 import { FlatList } from 'react-native-gesture-handler';
-import { useEffect, useState } from 'react';
-import { colors } from '@themes/colors';
+import { useState } from 'react';
 import { AdvacedInput, AdvancedButton, AdvancedIcon, CardCartSale } from '@components/index';
 
 import styles from './styles';
