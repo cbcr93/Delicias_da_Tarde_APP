@@ -7,16 +7,11 @@ export default StyleSheet.create({
     backgroundColor: colors.brand.Primary,
     textAlign: 'justify',
   },
-  search: {
-    paddingTop: 10,
-    alignItems: 'center',
-  },
   title: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
     color: colors.text.Primary,
-    marginBottom: 20,
+    textAlignVertical: 'top',
   },
   sub_title: {
     fontSize: 18,
@@ -28,15 +23,6 @@ export default StyleSheet.create({
     color: colors.text.Primary,
     textAlign: 'justify',
     paddingTop: 3,
-  },
-  buttonContainer: {
-    width: '90%',
-    height: 60,
-    borderRadius: 10,
-    flexDirection: 'row-reverse',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginBottom: 10,
   },
   header: {
     paddingTop: 10,
@@ -68,11 +54,27 @@ export default StyleSheet.create({
     width: 20,
     color: colors.brand.Tertiary
   },
+  search: {
+    paddingTop: 10,
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    width: 'auto',
+    height: 20,
+    borderRadius: 10,
+    flexDirection: 'row-reverse',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginBottom: 10,
+  },
   button_Text: {
     color: colors.text.Primary,
     backgroundColor: colors.brand.Primary,
     borderColor: colors.brand.Primary,
-    width: 180,
+    width: 'auto',
     height: 20,
+    padding: 0,
+    paddingHorizontal: 0,
+    paddingTop: 15,
   },
 });

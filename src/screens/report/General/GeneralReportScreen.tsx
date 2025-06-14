@@ -622,14 +622,6 @@ const GeneralReportScreen = (props: Props) => {
     ]
   }
 
-  const redirectBackOrHome = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    } else {
-      redirect(navigation, { name: 'Home' });
-    }
-  };
-
   const detailsItem = (item: {
     id: string;
     date: Date | string;
@@ -641,7 +633,28 @@ const GeneralReportScreen = (props: Props) => {
     redirect(navigation, { name: 'CartScreen', params: { options: { flag: 'edit', item } } });
   };
 
-  const searchByDate = () => { };
+  const searchByDate = (when: string) => {
+    switch (when) {
+      case 'today':
+        console.log(Date.now());
+        break;
+
+      case 'week':
+
+        break;
+
+      case 'mounth':
+
+        break;
+
+      case 'personalized':
+
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -651,26 +664,34 @@ const GeneralReportScreen = (props: Props) => {
             <View style={styles.search}>
               <AdvancedButton
                 title={'Hoje'}
-                onPress={searchByDate}
+                onPress={() => searchByDate('today')}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
+              <Text style={{
+                ...styles.title,
+              }}>{'|'}</Text>
               <AdvancedButton
                 title={'Semana'}
-                onPress={searchByDate}
+                onPress={() => searchByDate('week')}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
-
+              <Text style={{
+                ...styles.title,
+              }}>{'|'}</Text>
               <AdvancedButton
                 title={'Mês'}
-                onPress={searchByDate}
+                onPress={() => searchByDate('mounth')}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
+              <Text style={{
+                ...styles.title,
+              }}>{'|'}</Text>
               <AdvancedButton
                 title={'Personalizado'}
-                onPress={searchByDate}
+                onPress={() => searchByDate('personalized')}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
