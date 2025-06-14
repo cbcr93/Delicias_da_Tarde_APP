@@ -31,7 +31,7 @@ const GeneralReportScreen = (props: Props) => {
       date: Date | string;
       amamount_toal: number;
       price_total: string;
-      finish?: boolean;
+      finish: boolean;
       itens: Partial<models.IProduct>[]
     }[]
   } = {
@@ -43,9 +43,180 @@ const GeneralReportScreen = (props: Props) => {
     sales: [
       {
         id: 'x1234',
-        date: '2025-05-05 12:00:00.00',
+        date: '2025-05-14 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: false,
+        itens: [
+          {
+            id: 'x1',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 300.00,
+            amount: 3,
+
+          },
+          {
+            id: 'x2',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 400.00,
+            amount: 4,
+          },
+          {
+            id: 'x3',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+          {
+            id: 'x4',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+        ]
+      },
+      {
+        id: 'x12345',
+        date: '2025-05-14 06:00:00.00',
+        amamount_toal: 9,
+        price_total: '2700',
+        finish: false,
+        itens: [
+          {
+            id: 'x1',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 300.00,
+            amount: 3,
+
+          },
+          {
+            id: 'x2',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 400.00,
+            amount: 4,
+          },
+          {
+            id: 'x3',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+          {
+            id: 'x4',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+        ]
+      },
+      {
+        id: 'x12346',
+        date: '2025-05-14 08:00:00.00',
+        amamount_toal: 9,
+        price_total: '2700',
+        finish: true,
+        itens: [
+          {
+            id: 'x1',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 300.00,
+            amount: 3,
+
+          },
+          {
+            id: 'x2',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 400.00,
+            amount: 4,
+          },
+          {
+            id: 'x3',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+          {
+            id: 'x4',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+        ]
+      },
+      {
+        id: 'x12347',
+        date: '2025-05-14 09:00:00.00',
+        amamount_toal: 9,
+        price_total: '2700',
+        finish: true,
+        itens: [
+          {
+            id: 'x1',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 300.00,
+            amount: 3,
+
+          },
+          {
+            id: 'x2',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 400.00,
+            amount: 4,
+          },
+          {
+            id: 'x3',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+          {
+            id: 'x4',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+        ]
+      },
+      {
+        id: 'x12348',
+        date: '2025-05-13 09:00:00.00',
+        amamount_toal: 9,
+        price_total: '2700',
+        finish: true,
+        itens: [
+          {
+            id: 'x1',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 300.00,
+            amount: 3,
+
+          },
+          {
+            id: 'x2',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 400.00,
+            amount: 4,
+          },
+          {
+            id: 'x3',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+          {
+            id: 'x4',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
+            price: 100.00,
+            amount: 1,
+          },
+        ]
+      },
+      {
+        id: 'x12349',
+        date: '2025-05-12 09:00:00.00',
+        amamount_toal: 9,
+        price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -76,9 +247,10 @@ const GeneralReportScreen = (props: Props) => {
       },
       {
         id: 'x1235',
-        date: '2025-04-05 12:00:00.00',
+        date: '2025-04-11 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -112,6 +284,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2025-04-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -145,6 +318,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2025-03-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -178,6 +352,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2025-02-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -211,6 +386,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2025-01-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -244,6 +420,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-12-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -277,6 +454,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-11-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '27000z',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -310,6 +488,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-10-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: false,
         itens: [
           {
             id: 'x1',
@@ -343,6 +522,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-09-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -376,6 +556,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-08-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -409,6 +590,7 @@ const GeneralReportScreen = (props: Props) => {
         date: '2024-08-05 12:00:00.00',
         amamount_toal: 9,
         price_total: '2700',
+        finish: true,
         itens: [
           {
             id: 'x1',
@@ -448,9 +630,18 @@ const GeneralReportScreen = (props: Props) => {
     }
   };
 
-  const detailsItem = (item: any) => {
+  const detailsItem = (item: {
+    id: string;
+    date: Date | string;
+    amamount_toal: number;
+    price_total: string;
+    finish: boolean;
+    itens: Partial<models.IProduct>[]
+  }) => {
     redirect(navigation, { name: 'CartScreen', params: { options: { flag: 'edit', item } } });
   };
+
+  const searchByDate = () => { };
 
   return (
     <View style={styles.container}>
@@ -460,30 +651,29 @@ const GeneralReportScreen = (props: Props) => {
             <View style={styles.search}>
               <AdvancedButton
                 title={'Hoje'}
-                onPress={redirectBackOrHome}
+                onPress={searchByDate}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
               <AdvancedButton
                 title={'Semana'}
-                onPress={redirectBackOrHome}
+                onPress={searchByDate}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
 
               <AdvancedButton
                 title={'Mês'}
-                onPress={redirectBackOrHome}
+                onPress={searchByDate}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
               <AdvancedButton
                 title={'Personalizado'}
-                onPress={redirectBackOrHome}
+                onPress={searchByDate}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
-
             </View>
 
             <View style={styles.header_content}>

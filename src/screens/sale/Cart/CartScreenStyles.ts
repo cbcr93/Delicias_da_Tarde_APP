@@ -50,11 +50,11 @@ export default StyleSheet.create({
   footer_flat: {
     paddingTop: 10,
     width: '100%',
-    height: 120,
+    height: 150,
     alignItems: 'center',
-    borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
-    marginBottom: 35,
+    borderBottomColor: colors.brand.Tertiary,
+    borderBottomWidth: 3,
+    paddingBottom: 35,
   },
   button_Text: {
     color: colors.text.Primary,

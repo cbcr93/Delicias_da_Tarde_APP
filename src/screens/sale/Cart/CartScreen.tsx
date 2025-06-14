@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import translate from '@services/i18n';
-import { NavigationProp, NavigationState } from '@react-navigation/native';
+import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
 import { formatCurrency } from '@utils/formatters';
@@ -17,11 +17,25 @@ interface Props {
   };
 }
 
+type CartItemDetails = {
+  id: string;
+  date: Date | string;
+  amamount_toal: number;
+  price_total: string;
+  finish: boolean;
+  itens: Partial<models.IProduct>[];
+};
+
 const CartScreen = (props: Props) => {
   const { navigation } = props;
 
+  const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'CartScreen'>>();
+  const flag = route?.params?.options?.flag;
+  const itemDetails = route?.params?.options?.item as CartItemDetails | null | undefined;
+
   const [totalAmount, SetTotalAmount] = useState(0);
   const [totalPrice, SetTotalPrice] = useState(0);
+  const [Itens, SetItens] = useState<Partial<models.IProduct>[]>([]);
 
   const exempleItens: Partial<models.IProduct>[] = [
     {
@@ -51,14 +65,31 @@ const CartScreen = (props: Props) => {
   ];
 
   useEffect(() => {
-    SetTotalAmount(
-      exempleItens.reduce((acc, item) => acc + (item.amount ?? 0), 0)
-    );
-    SetTotalPrice(
-      exempleItens.reduce((acc, item) => acc + ((item.price ?? 0) * (item.amount ?? 0)),
-        0
-      ));
-  }, [exempleItens]);
+    if (flag === 'edit' && itemDetails) {
+      if (itemDetails.itens) {
+        SetItens(itemDetails.itens);
+        SetTotalAmount(
+          itemDetails.itens.reduce((acc, item) => acc + (item.amount ?? 0), 0)
+        );
+        SetTotalPrice(
+          itemDetails.itens.reduce((acc, item) => acc + ((item.price ?? 0) * (item.amount ?? 0)),
+            0
+          ));
+      } else {
+        SetItens([]);
+      }
+    }
+    if (flag === 'add') {
+      SetTotalAmount(
+        exempleItens.reduce((acc, item) => acc + (item.amount ?? 0), 0)
+      );
+      SetTotalPrice(
+        exempleItens.reduce((acc, item) => acc + ((item.price ?? 0) * (item.amount ?? 0)),
+          0
+        ));
+      SetItens(exempleItens);
+    }
+  }, [itemDetails, flag]);
 
   const redirectBackOrHome = () => {
     if (navigation.canGoBack()) {
@@ -90,7 +121,7 @@ const CartScreen = (props: Props) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={exempleItens}
+        data={Itens}
         keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
         renderItem={({ item }) => (
           <CardCartSale
@@ -98,11 +129,16 @@ const CartScreen = (props: Props) => {
             addMore={addMore}
             minusItem={minusItem}
             removeItem={removeItem}
+            flag={flag}
           />
-
         )}
-        ListFooterComponent={() => (
-          <View style={styles.footer_flat}>
+        ListHeaderComponent={() => (
+          <View style={{
+            ...styles.footer_flat,
+            ...((itemDetails && !itemDetails.finish) && {
+              backgroundColor: colors.gray[200],
+            })
+          }}>
             <Text style={styles.title}>{translate('PAGE.SALES.CART.RESUME')}</Text>
 
             <View style={styles.text_content}>
@@ -118,24 +154,60 @@ const CartScreen = (props: Props) => {
         )}
       />
 
-      <View style={styles.footer}>
+      <View style={
+        flag === 'add' ? styles.footer : {
+          ...styles.footer,
+          height: 150,
+        }
+      }>
+        {flag === 'add' &&
+          <>
+            <AdvancedButton
+              title={translate('PAGE.SALES.CART.CONFIRM')}
+              onPress={redirectConfirmCart}
+              style={styles.buttonContainer}
+              icon="check-circle"
+              iconSize={24}
+            />
 
-        <AdvancedButton
-          title={translate('PAGE.SALES.CART.CONFIRM')}
-          onPress={redirectConfirmCart}
-          style={styles.buttonContainer}
-          icon="check-circle"
-          iconSize={24}
-        />
+            <AdvancedButton
+              title={translate('PAGE.SALES.CART.CLEAR_CART')}
+              onPress={clearCart}
+              style={styles.buttonContainer}
+              icon="trash-2"
+              iconSize={24}
+              backgroundColor={colors.brand.Quaternary}
+            />
+          </>
+        }
 
-        <AdvancedButton
-          title={translate('PAGE.SALES.CART.CLEAR_CART')}
-          onPress={clearCart}
-          style={styles.buttonContainer}
-          icon="trash-2"
-          iconSize={24}
-          backgroundColor={colors.brand.Quaternary}
-        />
+        {(flag === 'edit' && itemDetails) &&
+          <>
+            {itemDetails.finish &&
+              <AdvancedButton
+                title={translate('PAGE.SALES.CART.FINISH_SALES_NOT')}
+                onPress={redirectConfirmCart}
+                style={{
+                  ...styles.buttonContainer,
+                  backgroundColor: colors.brand.Secondary,
+                  borderColor: colors.brand.Secondary,
+                }}
+              />
+            }
+
+            {!itemDetails.finish &&
+              <AdvancedButton
+                title={translate('PAGE.SALES.CART.FINISH_SALES')}
+                onPress={redirectConfirmCart}
+                style={{
+                  ...styles.buttonContainer,
+                  backgroundColor: colors.brand.Tertiary,
+                  borderColor: colors.brand.Tertiary,
+                }}
+              />
+            }
+          </>
+        }
 
         <AdvancedButton
           title={translate('SHARED.BACK')}

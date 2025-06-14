@@ -14,9 +14,12 @@ interface Props {
   removeItem?: (item: Partial<models.IProduct>) => void;
   detailsItem?: (item: models.IProduct) => void;
   editItem?: (item: models.IProduct) => void;
+  flag?: string | null
 }
 export const CardCartSale = (props: Props) => {
-  const { item, addMore, minusItem, removeItem, detailsItem, editItem } = props;
+  const { item, addMore, minusItem, removeItem, detailsItem, editItem, flag } = props;
+
+  console.log('flag', { flag });
 
   return (
     <View style={styles.box}>
@@ -38,63 +41,65 @@ export const CardCartSale = (props: Props) => {
           <Text style={styles.text}>{formatCurrency(Number(item.price))}</Text>
         </View>
       </View>
-      <View style={styles.side_rigth}>
-        {(item.amount === 1 && removeItem) &&
-          <AdvancedButton
-            icon={'trash-2'}
-            type="primary"
-            width={50}
-            onPress={() => removeItem(item)}
-            style={styles.buttonIconContainer}
-            iconStyle={styles.buttonIcon}
-            iconSize={styles.buttonIcon.width}
-          />
-        }
-        {(Number(item.amount) > 1 && minusItem) &&
-          <AdvancedButton
-            icon={'minus-circle'}
-            type="primary"
-            width={50}
-            onPress={() => minusItem(item)}
-            style={styles.buttonIconContainer}
-            iconStyle={styles.buttonIcon}
-            iconSize={styles.buttonIcon.width}
-          />
-        }
-        {addMore &&
-          <AdvancedButton
-            icon={'plus-circle'}
-            type="primary"
-            width={50}
-            onPress={() => addMore(item)}
-            style={styles.buttonIconContainer}
-            iconStyle={styles.buttonIcon}
-            iconSize={styles.buttonIcon.width}
-          />
-        }
-        {detailsItem &&
-          <AdvancedButton
-            icon={'eye'}
-            type="primary"
-            width={50}
-            onPress={() => detailsItem(item as models.IProduct)}
-            style={styles.buttonIconContainer}
-            iconStyle={styles.buttonIcon}
-            iconSize={styles.buttonIcon.width}
-          />
-        }
-        {editItem &&
-          <AdvancedButton
-            icon={'edit'}
-            type="primary"
-            width={50}
-            onPress={() => editItem(item as models.IProduct)}
-            style={styles.buttonIconContainer}
-            iconStyle={styles.buttonIcon}
-            iconSize={styles.buttonIcon.width}
-          />
-        }
-      </View>
+      {flag !== 'edit' &&
+        <View style={styles.side_rigth}>
+          {(item.amount === 1 && removeItem) &&
+            <AdvancedButton
+              icon={'trash-2'}
+              type="primary"
+              width={50}
+              onPress={() => removeItem(item)}
+              style={styles.buttonIconContainer}
+              iconStyle={styles.buttonIcon}
+              iconSize={styles.buttonIcon.width}
+            />
+          }
+          {(Number(item.amount) > 1 && minusItem) &&
+            <AdvancedButton
+              icon={'minus-circle'}
+              type="primary"
+              width={50}
+              onPress={() => minusItem(item)}
+              style={styles.buttonIconContainer}
+              iconStyle={styles.buttonIcon}
+              iconSize={styles.buttonIcon.width}
+            />
+          }
+          {addMore &&
+            <AdvancedButton
+              icon={'plus-circle'}
+              type="primary"
+              width={50}
+              onPress={() => addMore(item)}
+              style={styles.buttonIconContainer}
+              iconStyle={styles.buttonIcon}
+              iconSize={styles.buttonIcon.width}
+            />
+          }
+          {detailsItem &&
+            <AdvancedButton
+              icon={'eye'}
+              type="primary"
+              width={50}
+              onPress={() => detailsItem(item as models.IProduct)}
+              style={styles.buttonIconContainer}
+              iconStyle={styles.buttonIcon}
+              iconSize={styles.buttonIcon.width}
+            />
+          }
+          {editItem &&
+            <AdvancedButton
+              icon={'edit'}
+              type="primary"
+              width={50}
+              onPress={() => editItem(item as models.IProduct)}
+              style={styles.buttonIconContainer}
+              iconStyle={styles.buttonIcon}
+              iconSize={styles.buttonIcon.width}
+            />
+          }
+        </View>
+      }
     </View>
   );
 };

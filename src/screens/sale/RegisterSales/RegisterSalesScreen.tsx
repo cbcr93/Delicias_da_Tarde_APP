@@ -125,7 +125,7 @@ const RegisterSalesScreen = (props: Props) => {
       <View style={styles.footer}>
         <AdvancedButton
           title={translate('PAGE.SALES.REGISTER.TO_CART')}
-          onPress={() => redirect(navigation, { name: 'CartScreen' })}
+          onPress={() => redirect(navigation, { name: 'CartScreen', params: { options: { flag: 'add' } } })}
           style={styles.buttonContainer}
           icon="shopping-cart"
           iconSize={24}

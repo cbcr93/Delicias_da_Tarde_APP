@@ -39,7 +39,17 @@ export type RootStackParamList = {
   StockScreen: { name?: string; options?: object };
   CartScreen: {
     name?: string;
-    options?: { flag?: string | null | undefined; item?: any | null | undefined };
+    options?: {
+      flag?: string | null | undefined;
+      item?: {
+        id: string;
+        date: Date | string;
+        amamount_toal: number;
+        price_total: string;
+        finish: boolean;
+        itens: Partial<models.IProduct>[]
+      }[] | null | undefined
+    };
   };
   ConfirmCartScreen: { name?: string; options?: object };
   RegisterSalesScreen: { name?: string; options?: object };

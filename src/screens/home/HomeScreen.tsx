@@ -44,7 +44,7 @@ const HomeScreen = (props: Props) => {
         />
         <AdvancedButton
           title={translate('PAGE.HOME.BUTTONS.CART')}
-          onPress={() => redirect(navigation, { name: 'CartScreen' })}
+          onPress={() => redirect(navigation, { name: 'CartScreen', params: { options: { flag: 'add' } } })}
           style={styles.buttonContainer}
           textStyle={styles.buttonText}
           icon="shopping-cart"

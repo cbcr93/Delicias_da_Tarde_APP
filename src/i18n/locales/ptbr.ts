@@ -147,6 +147,8 @@ export default {
         PRICE_TOTAL: 'Preço total: ',
         CONFIRM: 'Confirmar',
         CLEAR_CART: 'Limpar Itens da Venda',
+        FINISH_SALES: 'Compra finalizada',
+        FINISH_SALES_NOT: 'Compra não finalizada',
       },
       CONFIRM: {
         TEXT: 'Venda Concluída',
