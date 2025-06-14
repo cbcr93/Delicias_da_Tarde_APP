@@ -21,7 +21,7 @@ const ProductDetailsScreen = (props: Props) => {
 
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'ProductDetailsScreen'>>();
   const flag = route?.params?.options?.flag;
-  const item: models.IProduct | null | undefined = route?.params?.options?.item;
+  const item: models.ProductsEntities | null | undefined = route?.params?.options?.item;
 
   const redirectBackOrHome = () => {
     if (navigation.canGoBack()) {
@@ -49,7 +49,7 @@ const ProductDetailsScreen = (props: Props) => {
 
   useEffect(() => {
     if (item) {
-      if (item.amount === 0) {
+      if (Number(item.amount) === 0) {
         setDisabled(true);
       } else {
         setDisabled(false);
@@ -77,7 +77,7 @@ const ProductDetailsScreen = (props: Props) => {
             <Text style={styles.title}>{translate('PAGE.SALES.DETAILS.PRICE')}</Text>
           </View>
           <Text style={styles.text}>
-            {item?.price ? formatCurrency(Number(item.price)) : 'indefinido'}
+            {item?.price ? formatCurrency(Number(item.price) / 100) : 'indefinido'}
           </Text>
 
           <View style={styles.text_content}>

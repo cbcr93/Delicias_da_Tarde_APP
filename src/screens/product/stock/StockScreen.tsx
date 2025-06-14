@@ -55,11 +55,11 @@ const StockScreen = (props: Props) => {
     }
   };
 
-  const redirectAddOrEdit = (flag: string, item: models.IProduct | null) => {
+  const redirectAddOrEdit = (flag: string, item: models.ProductsEntities | null) => {
     redirect(navigation, { name: 'AddOrEditProductScreen', params: { options: { flag, item } } });
   };
 
-  const redirectDetails = (flag: string, item: models.IProduct) => {
+  const redirectDetails = (flag: string, item: models.ProductsEntities) => {
     redirect(navigation, { name: 'ProductDetailsScreen', params: { options: { flag, item } } });
   };
 

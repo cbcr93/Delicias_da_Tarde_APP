@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Dispatch } from 'redux';
 import * as productsRepository from '@database/repositories/products';
 import * as models from '@models/types';
@@ -20,9 +21,10 @@ export const fetchProduct = () => async (dispatch: Dispatch<productsActions.Prod
 };
 
 export const addProduct =
-  (product: models.ProductsEntities) => async (dispatch: Dispatch<productsActions.ProductActions>) => {
+  (product: models.IProductsCreate) => async (dispatch: Dispatch<productsActions.ProductActions>) => {
+    const id = uuidv4();
     try {
-      await productsRepository.insertProduct(product);
+      await productsRepository.insertProduct({ ...product, id });
       const payload: models.ProductsEntities[] = await productsRepository.getAllProducts();
       dispatch(productsActions.readProduct(payload));
     } catch (e: unknown) {

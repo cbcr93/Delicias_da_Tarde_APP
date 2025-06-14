@@ -9,7 +9,7 @@ const initialState: ProductState = {
 export function productReducer(state = initialState, action: ProductActions): ProductState {
   switch (action.type) {
     case ProductActionTypes.READ_PRODUCTS:
-      return { ...state, products: [...action.payload] };
+      return { ...state, products: action.payload };
     case ProductActionTypes.READ_ID_PRODUCT:
       return { ...state, product: action.payload };
     default:

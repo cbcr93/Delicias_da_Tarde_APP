@@ -139,7 +139,7 @@ export default {
       CART: {
         TEXT: 'Itens da Venda',
         NAME: 'Nome:',
-        AMOUND: 'Quntidade:',
+        AMOUND: 'Quantidade:',
         PRICE: 'Preço:',
         AMOUNT: 'Quantidade em Estoque:',
         RESUME: 'Resumo da compra',
