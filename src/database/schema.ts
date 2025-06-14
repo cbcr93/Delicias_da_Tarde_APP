@@ -27,4 +27,16 @@ export const initDatabase = async () => {
       created_at INTEGER NOT NULL
     );`,
   );
+
+  await db.execAsync(
+    `CREATE TABLE IF NOT EXISTS products(
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      description TEXT,
+      price TEXT NOT NULL,
+      type TEXT NOT NULL,
+      code TEXT NOT NULL,
+      amount TEXT NOT NULL
+    );`,
+  );
 };
