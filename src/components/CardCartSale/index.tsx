@@ -19,8 +19,6 @@ interface Props {
 export const CardCartSale = (props: Props) => {
   const { item, addMore, minusItem, removeItem, detailsItem, editItem, flag } = props;
 
-  console.log('flag', { flag });
-
   return (
     <View style={styles.box}>
       <View style={styles.side_left}>

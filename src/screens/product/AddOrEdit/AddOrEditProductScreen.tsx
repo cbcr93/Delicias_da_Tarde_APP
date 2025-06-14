@@ -113,7 +113,6 @@ const AddOrEditProductScreen = (props: Props) => {
         const numericValue = parseInt(onlyDigits || '0', 10);
         const floatValue = numericValue / 100;
         const formatValue = formatCurrency(Number(floatValue));
-        console.log('formatValue', { formatValue, onlynumbers: onlyDigits })
         setPrice(formatValue);
         break;
       case 'amount':

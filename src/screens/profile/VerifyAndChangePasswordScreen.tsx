@@ -59,7 +59,6 @@ const VerifyAndChangePasswordScreen = (props: Props) => {
   };
 
   const handleResetPassword = async () => {
-    console.log('email: ', { email: user?.email });
     if (!user?.email) {
       Alert.alert('Email não encontrado.');
       return;
