@@ -97,3 +97,12 @@ export const formatTruncateString = (input: string, options: TruncateOptions): s
       return input.slice(0, length);
   }
 };
+
+export const formatCents = (value: number): string => value.toString().padStart(3, '0');
+
+export const formatCentStringToCurrency = (centString: string | number): string => {
+  const value = centString.toString().padStart(3, '0');
+  const reais = value.slice(0, -2) || '0';
+  const centavos = value.slice(-2);
+  return `R$ ${reais},${centavos}`;
+};

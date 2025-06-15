@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import translate from '@services/i18n';
 import { AdvancedButton } from '@components/AdvancedButton';
@@ -6,8 +6,12 @@ import { redirect } from '@routes/Redirect';
 import { formatCurrency } from '@utils/formatters';
 import * as models from '@models/types';
 import { useEffect, useState } from 'react';
+import * as cartThunks from '@redux/cart/thunks';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@redux/store';
 
 import styles from './styles';
+import { showToast } from '@utils/toast';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -16,6 +20,7 @@ interface Props {
 }
 
 const ProductDetailsScreen = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation } = props;
   const [disabled, setDisabled] = useState(false);
 
@@ -44,7 +49,20 @@ const ProductDetailsScreen = (props: Props) => {
   };
 
   const addCart = () => {
-    console.log(item);
+    if (item) {
+      try {
+        dispatch(cartThunks.addCart(item));
+        showToast({
+          type: 'success',
+          title: 'Item adicionado no carrinho!',
+        });
+      } catch (error) {
+        showToast({
+          type: 'error',
+          title: 'Erro ao adicionar no carrinho!',
+        });
+      }
+    }
   };
 
   useEffect(() => {

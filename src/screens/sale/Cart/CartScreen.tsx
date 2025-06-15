@@ -3,11 +3,17 @@ import translate from '@services/i18n';
 import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
-import { formatCurrency } from '@utils/formatters';
+import { formatCentStringToCurrency, formatCurrency } from '@utils/formatters';
 import { FlatList } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 import { colors } from '@themes/colors';
 import { AdvancedButton, CardCartSale } from '@components/index';
+import * as cartThunks from '@redux/cart/thunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@redux/store';
+import { RootState } from '@redux/rootReducer';
+import { showToast } from '@utils/toast';
+import { useAuth } from '@contexts/AuthContext';
 
 import styles from './CartScreenStyles';
 
@@ -23,11 +29,13 @@ type CartItemDetails = {
   amamount_toal: number;
   price_total: string;
   finish: boolean;
-  itens: Partial<models.IProduct>[];
+  itens: Partial<models.ProductsEntities>[];
 };
 
 const CartScreen = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation } = props;
+  const { user } = useAuth();
 
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'CartScreen'>>();
   const flag = route?.params?.options?.flag;
@@ -35,55 +43,28 @@ const CartScreen = (props: Props) => {
 
   const [totalAmount, SetTotalAmount] = useState(0);
   const [totalPrice, SetTotalPrice] = useState(0);
-  const [Itens, SetItens] = useState<Partial<models.IProduct>[]>([]);
+  const [Itens, SetItens] = useState<Partial<models.ProductsEntities>[]>([]);
 
-  const exempleItens: Partial<models.IProduct>[] = [
-    {
-      id: 'x1',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 300.0,
-      amount: 3,
-    },
-    {
-      id: 'x2',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 400.0,
-      amount: 4,
-    },
-    {
-      id: 'x3',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      amount: 1,
-    },
-    {
-      id: 'x4',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      amount: 1,
-    },
-  ];
+  const { cart } = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
     if (flag === 'edit' && itemDetails) {
       if (itemDetails.itens) {
         SetItens(itemDetails.itens);
-        SetTotalAmount(itemDetails.itens.reduce((acc, item) => acc + (item.amount ?? 0), 0));
-        SetTotalPrice(
-          itemDetails.itens.reduce((acc, item) => acc + (item.price ?? 0) * (item.amount ?? 0), 0),
+        SetTotalAmount(
+          itemDetails.itens.reduce((acc, item) => acc + (Number(item.amount) ?? 0), 0),
         );
+        SetTotalPrice(itemDetails.itens.reduce((acc, item) => acc + (Number(item.price) ?? 0), 0));
       } else {
         SetItens([]);
       }
     }
     if (flag === 'add') {
-      SetTotalAmount(exempleItens.reduce((acc, item) => acc + (item.amount ?? 0), 0));
-      SetTotalPrice(
-        exempleItens.reduce((acc, item) => acc + (item.price ?? 0) * (item.amount ?? 0), 0),
-      );
-      SetItens(exempleItens);
+      SetTotalAmount(cart.reduce((acc, item) => acc + (Number(item.amount) ?? 0), 0));
+      SetTotalPrice(cart.reduce((acc, item) => acc + (Number(item.price) ?? 0), 0));
+      SetItens(cart);
     }
-  }, [itemDetails, flag]);
+  }, [itemDetails, flag, cart]);
 
   const redirectBackOrHome = () => {
     if (navigation.canGoBack()) {
@@ -97,19 +78,57 @@ const CartScreen = (props: Props) => {
     redirect(navigation, { name: 'ConfirmCartScreen' });
   };
 
-  const addMore = (item: Partial<models.IProduct>) => {
-    console.log(item);
+  const finishSales = () => {
+    const body = {
+      price_total: totalPrice,
+      amount_toal: totalAmount,
+      finish: true,
+      user_id: user?.id,
+      sales_item: Itens,
+    };
+
+    console.log('body', body);
+
+    // redirect(navigation, { name: 'ConfirmCartScreen' });
   };
 
-  const minusItem = (item: Partial<models.IProduct>) => {
-    console.log(item);
+  const addMore = (item: models.ProductsEntities) => {
+    if (item) {
+      try {
+        dispatch(cartThunks.addCart(item));
+        showToast({
+          type: 'success',
+          title: 'Item adicionado no carrinho!',
+        });
+      } catch (error) {
+        showToast({
+          type: 'error',
+          title: 'Erro ao adicionar no carrinho!',
+        });
+      }
+    }
   };
 
-  const removeItem = (item: Partial<models.IProduct>) => {
-    console.log(item);
+  const removeItem = (item: models.ProductsEntities) => {
+    if (item) {
+      try {
+        dispatch(cartThunks.removeCartById(item));
+        showToast({
+          type: 'success',
+          title: 'Item remover do carrinho!',
+        });
+      } catch (error) {
+        showToast({
+          type: 'error',
+          title: 'Erro ao remover do carrinho!',
+        });
+      }
+    }
   };
 
-  const clearCart = () => {};
+  const clearCart = () => {
+    dispatch(cartThunks.removeAllCart());
+  };
 
   return (
     <View style={styles.container}>
@@ -119,9 +138,9 @@ const CartScreen = (props: Props) => {
         renderItem={({ item }) => (
           <CardCartSale
             item={item}
-            addMore={addMore}
-            minusItem={minusItem}
-            removeItem={removeItem}
+            addMore={(item) => addMore(item as models.ProductsEntities)}
+            minusItem={(item) => removeItem(item as models.ProductsEntities)}
+            removeItem={(item) => removeItem(item as models.ProductsEntities)}
             flag={flag}
           />
         )}
@@ -144,7 +163,7 @@ const CartScreen = (props: Props) => {
 
             <View style={styles.text_content}>
               <Text style={styles.sub_title}>{translate('PAGE.SALES.CART.PRICE_TOTAL')}</Text>
-              <Text style={styles.text}>{formatCurrency(totalPrice)}</Text>
+              <Text style={styles.text}>{formatCentStringToCurrency(totalPrice)}</Text>
             </View>
           </View>
         )}
@@ -164,19 +183,24 @@ const CartScreen = (props: Props) => {
           <>
             <AdvancedButton
               title={translate('PAGE.SALES.CART.CONFIRM')}
-              onPress={redirectConfirmCart}
+              onPress={finishSales}
               style={styles.buttonContainer}
               icon="check-circle"
               iconSize={24}
+              disabled={Itens.length === 0}
             />
 
             <AdvancedButton
               title={translate('PAGE.SALES.CART.CLEAR_CART')}
               onPress={clearCart}
-              style={styles.buttonContainer}
+              style={{
+                ...styles.buttonContainer,
+                borderColor: colors.brand.Quaternary,
+              }}
               icon="trash-2"
               iconSize={24}
               backgroundColor={colors.brand.Quaternary}
+              disabled={Itens.length === 0}
             />
           </>
         )}
