@@ -2,7 +2,6 @@ import { ProductsEntities } from '@models/types';
 
 import { db } from '../db';
 
-// CREATE
 export const insertProduct = async (product: ProductsEntities) => {
   await db.runAsync(
     `INSERT INTO products (id, name, description, price, type, code, amount) VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -18,12 +17,10 @@ export const insertProduct = async (product: ProductsEntities) => {
   );
 };
 
-// READ (All)
 export const getAllProducts = async (): Promise<ProductsEntities[]> => {
   return await db.getAllAsync<ProductsEntities>(`SELECT * FROM products ORDER BY name ASC`);
 };
 
-// READ (By ID)
 export const getProductById = async (id: string): Promise<ProductsEntities | null> => {
   const result = await db.getFirstAsync<ProductsEntities>(`SELECT * FROM products WHERE id = ?`, [
     id,
@@ -31,7 +28,6 @@ export const getProductById = async (id: string): Promise<ProductsEntities | nul
   return result ?? null;
 };
 
-// UPDATE
 export const updateProduct = async (product: ProductsEntities) => {
   await db.runAsync(
     `UPDATE products SET name = ?, description = ?, price = ?, type = ?, code = ?, amount = ? WHERE id = ?`,
@@ -47,12 +43,10 @@ export const updateProduct = async (product: ProductsEntities) => {
   );
 };
 
-// DELETE
 export const deleteProduct = async (id: string) => {
   await db.runAsync(`DELETE FROM products WHERE id = ?`, [id]);
 };
 
-// SEARCH by name or code
 export const searchProducts = async (query: string): Promise<ProductsEntities[]> => {
   return await db.getAllAsync<ProductsEntities>(
     `SELECT * FROM products 

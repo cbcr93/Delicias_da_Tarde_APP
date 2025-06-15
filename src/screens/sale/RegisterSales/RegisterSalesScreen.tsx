@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from 'react-native';
+import { Alert, FlatList, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
@@ -12,8 +12,10 @@ import { RootState } from '@redux/rootReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import * as productsThunks from '@redux/product/thunks';
+import * as cartThunks from '@redux/cart/thunks';
 
 import styles from './styles';
+import { showToast } from '@utils/toast';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -27,8 +29,6 @@ const RegisterSalesScreen = (props: Props) => {
   const [search, setSearch] = useState('');
 
   const { products } = useSelector((state: RootState) => state.product);
-
-  // let products: models.ProductsEntities[] = []
 
   const loadItems = async () => {
     if (search) {
@@ -51,7 +51,20 @@ const RegisterSalesScreen = (props: Props) => {
   }, [search]);
 
   const addCart = (item: models.ProductsEntities) => {
-    console.log(item);
+    if (item) {
+      try {
+        dispatch(cartThunks.addCart(item));
+        showToast({
+          type: 'success',
+          title: 'Item adicionado no carrinho!',
+        });
+      } catch (error) {
+        showToast({
+          type: 'error',
+          title: 'Erro ao adicionar no carrinho!',
+        });
+      }
+    }
   };
 
   const toDatails = (item: models.ProductsEntities) => {

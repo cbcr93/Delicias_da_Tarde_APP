@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -25,6 +26,7 @@ export default function App() {
           </GestureHandlerRootView>
         </Provider>
       </I18nextProvider>
+      <Toast />
     </View>
   );
 }
