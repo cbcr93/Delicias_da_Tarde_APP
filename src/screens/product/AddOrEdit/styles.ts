@@ -47,7 +47,7 @@ export default StyleSheet.create({
     height: 150,
     alignItems: 'center',
     borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
+    borderTopWidth: 1,
     marginBottom: 35,
   },
   input: {

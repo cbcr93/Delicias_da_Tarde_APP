@@ -24,7 +24,7 @@ export default StyleSheet.create({
     height: 210,
     alignItems: 'center',
     borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
+    borderTopWidth: 1,
     marginBottom: 35,
   },
   buttonContainer: {

@@ -12,7 +12,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   primaryContainer: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderRadius: 10,
   },
   secondaryContainer: {

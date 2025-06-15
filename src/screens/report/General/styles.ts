@@ -29,7 +29,7 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     borderBottomColor: colors.brand.Tertiary,
-    borderBottomWidth: 3,
+    borderBottomWidth: 1,
     marginBottom: 15,
   },
   header_content: {
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderColor: colors.brand.Tertiary,
     borderRadius: 20,
-    borderWidth: 3,
+    borderWidth: 1,
     margin: 10,
     paddingTop: 10,
     paddingBottom: 10,

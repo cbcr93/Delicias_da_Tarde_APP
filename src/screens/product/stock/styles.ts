@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
+    borderTopWidth: 1,
   },
   buttonContainer: {
     width: '90%',
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     height: 140,
     alignItems: 'center',
     borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
+    borderTopWidth: 1,
     marginBottom: 35,
   },
   button_Text: {
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     height: 50,
     margin: 10,
     borderColor: colors.brand.Tertiary,
-    borderWidth: 3,
+    borderWidth: 1,
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',

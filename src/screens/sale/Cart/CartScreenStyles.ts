@@ -44,7 +44,7 @@ export default StyleSheet.create({
     height: 210,
     alignItems: 'center',
     borderTopColor: colors.brand.Tertiary,
-    borderTopWidth: 3,
+    borderTopWidth: 1,
     marginBottom: 35,
   },
   footer_flat: {
@@ -53,7 +53,7 @@ export default StyleSheet.create({
     height: 150,
     alignItems: 'center',
     borderBottomColor: colors.brand.Tertiary,
-    borderBottomWidth: 3,
+    borderBottomWidth: 1,
     paddingBottom: 35,
   },
   button_Text: {

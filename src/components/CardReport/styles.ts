@@ -19,7 +19,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderColor: colors.brand.Tertiary,
     borderRadius: 20,
-    borderWidth: 3,
+    borderWidth: 1,
     margin: 5,
     marginRight: 15,
     marginLeft: 15,

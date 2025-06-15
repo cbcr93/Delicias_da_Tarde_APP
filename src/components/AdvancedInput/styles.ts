@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.brand.Primary,
     borderColor: colors.brand.Tertiary,
-    borderWidth: 3,
+    borderWidth: 1,
     padding: 3,
     marginBottom: 12,
     borderRadius: 8,

@@ -33,7 +33,7 @@ export default StyleSheet.create({
     margin: 10,
     padding: 10,
     borderColor: colors.brand.Tertiary,
-    borderWidth: 3,
+    borderWidth: 1,
     borderRadius: 20,
   },
   side_left: {
