@@ -79,18 +79,17 @@ const RegisterSalesScreen = (props: Props) => {
       />
 
       <View style={styles.content}>
-        {products.length > 0 ?
+        {products.length > 0 ? (
           <FlatList
             data={products}
             keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
             renderItem={({ item }) => (
               <CardProductSale item={item} addCart={addCart} toDatails={toDatails} />
             )}
-          /> :
-          <Text style={styles.text}>
-            {'Estoque vazio.'}
-          </Text>
-        }
+          />
+        ) : (
+          <Text style={styles.text}>{'Estoque vazio.'}</Text>
+        )}
       </View>
 
       <View style={styles.footer}>

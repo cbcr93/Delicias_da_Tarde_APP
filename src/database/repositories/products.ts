@@ -1,5 +1,5 @@
-
 import { ProductsEntities } from '@models/types';
+
 import { db } from '../db';
 
 // CREATE
@@ -14,7 +14,7 @@ export const insertProduct = async (product: ProductsEntities) => {
       product.type,
       product.code,
       product.amount,
-    ]
+    ],
   );
 };
 
@@ -25,7 +25,9 @@ export const getAllProducts = async (): Promise<ProductsEntities[]> => {
 
 // READ (By ID)
 export const getProductById = async (id: string): Promise<ProductsEntities | null> => {
-  const result = await db.getFirstAsync<ProductsEntities>(`SELECT * FROM products WHERE id = ?`, [id]);
+  const result = await db.getFirstAsync<ProductsEntities>(`SELECT * FROM products WHERE id = ?`, [
+    id,
+  ]);
   return result ?? null;
 };
 
@@ -41,7 +43,7 @@ export const updateProduct = async (product: ProductsEntities) => {
       product.code,
       product.amount,
       product.id,
-    ]
+    ],
   );
 };
 
@@ -56,6 +58,6 @@ export const searchProducts = async (query: string): Promise<ProductsEntities[]>
     `SELECT * FROM products 
      WHERE name LIKE ? OR code LIKE ? OR type LIKE ?
      ORDER BY name ASC`,
-    [`%${query}%`, `%${query}%`, `%${query}%`]
+    [`%${query}%`, `%${query}%`, `%${query}%`],
   );
 };

@@ -92,7 +92,7 @@ const AddOrEditProductScreen = (props: Props) => {
           description !== item.description ||
           price.replace(/\D/g, '') !== item.price.toString().replace(/\D/g, '') ||
           amount.replace(/\D/g, '').replace(/^0+/, '') !==
-          item.amount.toString().replace(/\D/g, '').replace(/^0+/, '') ||
+            item.amount.toString().replace(/\D/g, '').replace(/^0+/, '') ||
           type !== item.type ||
           code !== item.code) &&
         name.trim().length > 2 &&

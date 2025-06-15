@@ -58,6 +58,6 @@ export default StyleSheet.create({
   },
   text: {
     color: colors.text.Primary,
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });

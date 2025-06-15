@@ -5,7 +5,7 @@ import { productReducer } from './product/reducer';
 
 export const rootReducer = combineReducers({
   item: itemReducer,
-  product: productReducer
+  product: productReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

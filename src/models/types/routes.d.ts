@@ -30,11 +30,17 @@ export type RootStackParamList = {
   HomeStack: { name?: boolean; options?: object };
   AddOrEditProductScreen: {
     name?: string;
-    options?: { flag?: string | null | undefined; item?: models.ProductsEntities | null | undefined };
+    options?: {
+      flag?: string | null | undefined;
+      item?: models.ProductsEntities | null | undefined;
+    };
   };
   ProductDetailsScreen: {
     name?: string;
-    options?: { flag?: string | null | undefined; item?: models.ProductsEntities | null | undefined };
+    options?: {
+      flag?: string | null | undefined;
+      item?: models.ProductsEntities | null | undefined;
+    };
   };
   StockScreen: { name?: string; options?: object };
   CartScreen: {
@@ -42,16 +48,16 @@ export type RootStackParamList = {
     options?: {
       flag?: string | null | undefined;
       item?:
-      | {
-        id: string;
-        date: Date | string;
-        amamount_toal: number;
-        price_total: string;
-        finish: boolean;
-        itens: Partial<models.ProductsEntities>[];
-      }[]
-      | null
-      | undefined;
+        | {
+            id: string;
+            date: Date | string;
+            amamount_toal: number;
+            price_total: string;
+            finish: boolean;
+            itens: Partial<models.ProductsEntities>[];
+          }[]
+        | null
+        | undefined;
     };
   };
   ConfirmCartScreen: { name?: string; options?: object };
