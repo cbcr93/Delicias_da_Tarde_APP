@@ -1,3 +1,5 @@
+import * as models from '@models/types';
+
 export interface SalesItemEntity {
   id: string;
   sales_id: string;
@@ -15,4 +17,12 @@ export interface SalesEntity {
   finish: boolean;
   user_id?: string;
   items?: SalesItemEntity[];
+}
+
+export interface ISaleCreate {
+  price_total: string;
+  amount_total: string;
+  finish: boolean;
+  user_id?: string;
+  itens: models.ProductsEntities[];
 }

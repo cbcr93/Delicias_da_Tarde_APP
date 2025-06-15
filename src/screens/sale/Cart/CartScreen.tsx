@@ -79,12 +79,12 @@ const CartScreen = (props: Props) => {
   };
 
   const finishSales = () => {
-    const body = {
-      price_total: totalPrice,
-      amount_toal: totalAmount,
+    const body: models.ISaleCreate = {
+      price_total: formatCentStringToCurrency(totalPrice),
+      amount_total: totalAmount.toString(),
       finish: true,
       user_id: user?.id,
-      sales_item: Itens,
+      itens: cart,
     };
 
     console.log('body', body);
@@ -150,8 +150,8 @@ const CartScreen = (props: Props) => {
               ...styles.footer_flat,
               ...(itemDetails &&
                 !itemDetails.finish && {
-                  backgroundColor: colors.gray[200],
-                }),
+                backgroundColor: colors.gray[200],
+              }),
             }}
           >
             <Text style={styles.title}>{translate('PAGE.SALES.CART.RESUME')}</Text>
@@ -174,9 +174,9 @@ const CartScreen = (props: Props) => {
           flag === 'add'
             ? styles.footer
             : {
-                ...styles.footer,
-                height: 150,
-              }
+              ...styles.footer,
+              height: 150,
+            }
         }
       >
         {flag === 'add' && (
