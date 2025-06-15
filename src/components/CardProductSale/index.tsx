@@ -8,9 +8,9 @@ import * as models from '@models/types';
 import styles from './styles';
 
 interface Props {
-  item: models.IProduct;
-  toDatails: (item: models.IProduct) => void;
-  addCart: (item: models.IProduct) => void;
+  item: models.ProductsEntities;
+  toDatails: (item: models.ProductsEntities) => void;
+  addCart: (item: models.ProductsEntities) => void;
 }
 export const CardProductSale = (props: Props) => {
   const { item, addCart, toDatails } = props;
@@ -39,7 +39,7 @@ export const CardProductSale = (props: Props) => {
 
         <View style={styles.text_content}>
           <Text style={styles.title}>{translate('PAGE.SALES.REGISTER.PRICE')}</Text>
-          <Text style={styles.text}>{formatCurrency(Number(item.price))}</Text>
+          <Text style={styles.text}>{formatCurrency(Number(item.price) / 100)}</Text>
         </View>
       </View>
       <View style={styles.side_rigth}>

@@ -1,5 +1,5 @@
-import { FlatList, View } from 'react-native';
-import { useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
@@ -8,6 +8,10 @@ import { AdvancedIcon } from '@components/AdvancedIcon';
 import translate from '@services/i18n';
 import { CardProductSale } from '@components/CardProductSale';
 import * as models from '@models/types';
+import { RootState } from '@redux/rootReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@redux/store';
+import * as productsThunks from '@redux/product/thunks';
 
 import styles from './styles';
 
@@ -18,77 +22,39 @@ interface Props {
 }
 
 const RegisterSalesScreen = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation } = props;
   const [search, setSearch] = useState('');
 
-  const exempleProduct = [
-    {
-      id: '1',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Sem produto',
-      code: 'X1',
-      amount: 0,
-    },
-    {
-      id: '2',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bebidas',
-      code: 'X2',
-      amount: 100,
-    },
-    {
-      id: '3',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'BomBoms',
-      code: 'X3',
-      amount: 100,
-    },
-    {
-      id: '4',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bolos',
-      code: 'X4',
-      amount: 100,
-    },
-    {
-      id: '5',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bolos',
-      code: 'X5',
-      amount: 100,
-    },
-    {
-      id: '6',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bebidas',
-      code: 'X6',
-      amount: 100,
-    },
-  ];
+  const { products } = useSelector((state: RootState) => state.product);
 
-  const addCart = (item: models.IProduct) => {
+  // let products: models.ProductsEntities[] = []
+
+  const loadItems = async () => {
+    if (search) {
+      dispatch(productsThunks.searchProduct(search));
+    } else {
+      dispatch(productsThunks.fetchProduct());
+    }
+  };
+
+  useEffect(() => {
+    dispatch(productsThunks.fetchProduct());
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      loadItems();
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [search]);
+
+  const addCart = (item: models.ProductsEntities) => {
     console.log(item);
   };
 
-  const toDatails = (item: models.IProduct) => {
+  const toDatails = (item: models.ProductsEntities) => {
     console.log(item);
     redirect(navigation, {
       name: 'ProductDetailsScreen',
@@ -113,13 +79,17 @@ const RegisterSalesScreen = (props: Props) => {
       />
 
       <View style={styles.content}>
-        <FlatList
-          data={exempleProduct}
-          keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
-          renderItem={({ item }) => (
-            <CardProductSale item={item} addCart={addCart} toDatails={toDatails} />
-          )}
-        />
+        {products.length > 0 ? (
+          <FlatList
+            data={products}
+            keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
+            renderItem={({ item }) => (
+              <CardProductSale item={item} addCart={addCart} toDatails={toDatails} />
+            )}
+          />
+        ) : (
+          <Text style={styles.text}>{'Estoque vazio.'}</Text>
+        )}
       </View>
 
       <View style={styles.footer}>

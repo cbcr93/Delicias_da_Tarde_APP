@@ -1,11 +1,15 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import translate from '@services/i18n';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
 import { FlatList } from 'react-native-gesture-handler';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AdvacedInput, AdvancedButton, AdvancedIcon, CardCartSale } from '@components/index';
+import { RootState } from '@redux/rootReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import * as productsThunks from '@redux/product/thunks';
+import { AppDispatch } from '@redux/store';
 
 import styles from './styles';
 
@@ -16,72 +20,32 @@ interface Props {
 }
 
 const StockScreen = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation } = props;
 
   const [search, setSearch] = useState('');
 
-  const exempleItens = [
-    {
-      id: '1',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Sem produto',
-      code: 'X1',
-      amount: 0,
-    },
-    {
-      id: '2',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bebidas',
-      code: 'X2',
-      amount: 100,
-    },
-    {
-      id: '3',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'BomBoms',
-      code: 'X3',
-      amount: 100,
-    },
-    {
-      id: '4',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bolos',
-      code: 'X4',
-      amount: 100,
-    },
-    {
-      id: '5',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bolos',
-      code: 'X5',
-      amount: 100,
-    },
-    {
-      id: '6',
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus est laoreet, eleifend mi vitae, posuere urna. Duis eget purus et eros fermentum mattis. Etiam sit amet tortor quis diam placerat tristique varius in odio. Donec sollicitudin dui viverra, mattis libero aliquet, tincidunt massa. Maecenas lacus risus, dignissim ac dignissim eget, consectetur et nunc. Pellentesque accumsan volutpat porta. Mauris tellus ipsum, rutrum vitae quam ac, auctor cursus magna. Cras efficitur a elit a volutpat. Maecenas quis mollis tortor. Sed id vulputate sem.',
-      price: 100.0,
-      type: 'Bebidas',
-      code: 'X6',
-      amount: 100,
-    },
-  ];
+  const { products } = useSelector((state: RootState) => state.product);
+
+  const loadItems = async () => {
+    if (search) {
+      dispatch(productsThunks.searchProduct(search));
+    } else {
+      dispatch(productsThunks.fetchProduct());
+    }
+  };
+
+  useEffect(() => {
+    dispatch(productsThunks.fetchProduct());
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      loadItems();
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [search]);
 
   const redirectBackOrHome = () => {
     if (navigation.canGoBack()) {
@@ -91,11 +55,11 @@ const StockScreen = (props: Props) => {
     }
   };
 
-  const redirectAddOrEdit = (flag: string, item: models.IProduct | null) => {
+  const redirectAddOrEdit = (flag: string, item: models.ProductsEntities | null) => {
     redirect(navigation, { name: 'AddOrEditProductScreen', params: { options: { flag, item } } });
   };
 
-  const redirectDetails = (flag: string, item: models.IProduct) => {
+  const redirectDetails = (flag: string, item: models.ProductsEntities) => {
     redirect(navigation, { name: 'ProductDetailsScreen', params: { options: { flag, item } } });
   };
 
@@ -111,17 +75,21 @@ const StockScreen = (props: Props) => {
       />
 
       <View style={styles.content}>
-        <FlatList
-          data={exempleItens}
-          keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
-          renderItem={({ item }) => (
-            <CardCartSale
-              item={item}
-              detailsItem={(item) => redirectDetails('edit', item)}
-              editItem={(item) => redirectAddOrEdit('edit', item)}
-            />
-          )}
-        />
+        {products.length > 0 ? (
+          <FlatList
+            data={products}
+            keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
+            renderItem={({ item }) => (
+              <CardCartSale
+                item={item}
+                detailsItem={(item) => redirectDetails('edit', item)}
+                editItem={(item) => redirectAddOrEdit('edit', item)}
+              />
+            )}
+          />
+        ) : (
+          <Text style={styles.text}>{'Estoque vazio.'}</Text>
+        )}
       </View>
 
       <View style={styles.footer}>

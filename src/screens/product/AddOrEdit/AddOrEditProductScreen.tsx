@@ -7,6 +7,9 @@ import * as models from '@models/types';
 import { useEffect, useState } from 'react';
 import { AdvacedInput } from '@components/AdvancedInput';
 import { formatCurrency } from '@utils/formatters';
+import * as productsThunks from '@redux/product/thunks';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@redux/store';
 
 import styles from './styles';
 interface Props {
@@ -16,11 +19,13 @@ interface Props {
 }
 
 const AddOrEditProductScreen = (props: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { navigation } = props;
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'ProductDetailsScreen'>>();
   const flag = route?.params?.options?.flag;
-  const item: models.IProduct | null | undefined = route?.params?.options?.item;
+  const item: models.ProductsEntities | null | undefined = route?.params?.options?.item;
   const [name, setName] = useState('');
+
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('R$ 0,00');
   const [amount, setAmount] = useState('0');
@@ -38,7 +43,7 @@ const AddOrEditProductScreen = (props: Props) => {
   };
 
   const handleAdd = () => {
-    const body = {
+    const body: models.IProductsCreate = {
       name,
       description,
       price: price.replace(/\D/g, ''),
@@ -47,7 +52,9 @@ const AddOrEditProductScreen = (props: Props) => {
       code,
     };
 
-    console.log('handleAdd', { body });
+    dispatch(productsThunks.addProduct(body));
+
+    redirectBackOrHome();
   };
 
   const handleEdit = () => {
@@ -59,7 +66,10 @@ const AddOrEditProductScreen = (props: Props) => {
       type: type.trim(),
       code: code.trim(),
     };
-    console.log('handleEdit', { id: item?.id, body });
+
+    if (item?.id) dispatch(productsThunks.editProduct({ id: item.id, ...body }));
+
+    redirectBackOrHome();
   };
 
   const disableValid = () => {

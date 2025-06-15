@@ -56,4 +56,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '90%',
   },
+  text: {
+    color: colors.text.Primary,
+    textAlign: 'center',
+  },
 });
