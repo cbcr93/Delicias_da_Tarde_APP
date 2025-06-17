@@ -1,4 +1,4 @@
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import translate from '@services/i18n';
 import { AdvancedButton } from '@components/AdvancedButton';
@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 
 import styles from './styles';
-import { showToast } from '@utils/toast';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -50,18 +49,7 @@ const ProductDetailsScreen = (props: Props) => {
 
   const addCart = () => {
     if (item) {
-      try {
-        dispatch(cartThunks.addCart(item));
-        showToast({
-          type: 'success',
-          title: 'Item adicionado no carrinho!',
-        });
-      } catch (error) {
-        showToast({
-          type: 'error',
-          title: 'Erro ao adicionar no carrinho!',
-        });
-      }
+      dispatch(cartThunks.addCart(item));
     }
   };
 

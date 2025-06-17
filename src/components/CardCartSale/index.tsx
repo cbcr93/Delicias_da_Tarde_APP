@@ -4,6 +4,7 @@ import translate from '@services/i18n';
 import { formatCurrency } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
+import { colors } from '@themes/colors';
 
 import styles from './styles';
 
@@ -20,7 +21,12 @@ export const CardCartSale = (props: Props) => {
   const { item, addMore, minusItem, removeItem, detailsItem, editItem, flag } = props;
 
   return (
-    <View style={styles.box}>
+    <View
+      style={{
+        ...styles.box,
+        ...(item.amount === '0' && { backgroundColor: colors.gray[200] }),
+      }}
+    >
       <View style={styles.side_left}>
         <View style={styles.text_content}>
           <Text style={styles.title}>{translate('PAGE.SALES.CART.NAME')}</Text>
@@ -47,7 +53,11 @@ export const CardCartSale = (props: Props) => {
               type="primary"
               width={50}
               onPress={() => removeItem(item)}
-              style={styles.buttonIconContainer}
+              style={{
+                ...styles.buttonIconContainer,
+                backgroundColor: colors.brand.Secondary,
+                borderColor: colors.brand.Secondary,
+              }}
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />

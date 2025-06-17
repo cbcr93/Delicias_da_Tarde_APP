@@ -47,17 +47,7 @@ export type RootStackParamList = {
     name?: string;
     options?: {
       flag?: string | null | undefined;
-      item?:
-        | {
-            id: string;
-            date: Date | string;
-            amamount_toal: number;
-            price_total: string;
-            finish: boolean;
-            itens: Partial<models.ProductsEntities>[];
-          }[]
-        | null
-        | undefined;
+      item?: models.SalesEntity | null | undefined;
     };
   };
   ConfirmCartScreen: { name?: string; options?: object };

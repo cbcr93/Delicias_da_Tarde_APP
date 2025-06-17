@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
-import { Alert } from 'react-native';
 import * as models from '@models/types';
 import { RootState } from '@redux/rootReducer';
 import * as productsRepository from '@database/repositories/products';
 import { formatCents } from '@utils/formatters';
+import { showToast } from '@utils/toast';
 
 import * as cartActions from './actions';
 
@@ -19,31 +19,56 @@ export const addCart =
         product.id,
       );
 
-      if (!payload) payload = product;
-
-      if (index !== -1) {
-        const existing = { ...currentCart[index] };
-
-        const updatedAmount = Number(existing.amount) + 1;
-        const updatedPrice = formatCents(Number(existing.price) + Number(payload.price));
-
-        currentCart[index] = {
-          ...existing,
-          amount: updatedAmount.toString(),
-          price: updatedPrice,
-        };
-      } else {
-        currentCart.push({
-          ...product,
-          amount: '1',
-          price: formatCents(Number(product.price)),
+      if (payload && payload.amount === '0') {
+        showToast({
+          type: 'error',
+          title: 'Não item no estoque!',
         });
-      }
+      } else {
+        if (!payload) payload = product;
 
-      dispatch(cartActions.readCart(currentCart));
+        if (index !== -1) {
+          const existing = { ...currentCart[index] };
+          if (payload.amount === existing.amount) {
+            showToast({
+              type: 'error',
+              title: 'Maximo de item no estoque!',
+            });
+          } else {
+            const updatedAmount = Number(existing.amount) + 1;
+            const updatedPrice = formatCents(Number(existing.price) + Number(payload.price));
+
+            currentCart[index] = {
+              ...existing,
+              amount: updatedAmount.toString(),
+              price: updatedPrice,
+            };
+            dispatch(cartActions.readCart(currentCart));
+            showToast({
+              type: 'success',
+              title: 'Item adicionado no carrinho!',
+            });
+          }
+        } else {
+          currentCart.push({
+            ...product,
+            amount: '1',
+            price: formatCents(Number(product.price)),
+          });
+          dispatch(cartActions.readCart(currentCart));
+          showToast({
+            type: 'success',
+            title: 'Item adicionado no carrinho!',
+          });
+        }
+      }
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : 'Erro desconhecido';
-      Alert.alert('Erro ao adicionar ao carrinho', message);
+      console.log('Erro ao adicionar ao carrinho', message);
+      showToast({
+        type: 'error',
+        title: 'Erro ao adicionar no carrinho!',
+      });
     }
   };
 
@@ -79,17 +104,33 @@ export const removeCartById =
       }
 
       dispatch(cartActions.readCart(currentCart));
+      showToast({
+        type: 'success',
+        title: 'Item removido do carrinho!',
+      });
     } catch (e: unknown) {
       const message = e instanceof Error ? e.message : 'Erro desconhecido';
-      Alert.alert('Erro ao remover do carrinho', message);
+      console.log('Erro ao remover ao carrinho', message);
+      showToast({
+        type: 'error',
+        title: 'Erro ao remover no carrinho!',
+      });
     }
   };
 
 export const removeAllCart = () => async (dispatch: Dispatch<cartActions.CartActions>) => {
   try {
     dispatch(cartActions.removeCart());
+    showToast({
+      type: 'success',
+      title: 'Carrinho limpo!',
+    });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Erro desconhecido';
-    Alert.alert('Erro ao remover do carrinho', message);
+    console.log('Erro ao remover ao carrinho', message);
+    showToast({
+      type: 'error',
+      title: 'Erro ao remover no carrinho!',
+    });
   }
 };

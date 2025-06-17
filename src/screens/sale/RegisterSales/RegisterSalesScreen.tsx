@@ -1,4 +1,4 @@
-import { Alert, FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AdvancedButton } from '@components/AdvancedButton';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
@@ -15,7 +15,6 @@ import * as productsThunks from '@redux/product/thunks';
 import * as cartThunks from '@redux/cart/thunks';
 
 import styles from './styles';
-import { showToast } from '@utils/toast';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {
@@ -52,23 +51,11 @@ const RegisterSalesScreen = (props: Props) => {
 
   const addCart = (item: models.ProductsEntities) => {
     if (item) {
-      try {
-        dispatch(cartThunks.addCart(item));
-        showToast({
-          type: 'success',
-          title: 'Item adicionado no carrinho!',
-        });
-      } catch (error) {
-        showToast({
-          type: 'error',
-          title: 'Erro ao adicionar no carrinho!',
-        });
-      }
+      dispatch(cartThunks.addCart(item));
     }
   };
 
   const toDatails = (item: models.ProductsEntities) => {
-    console.log(item);
     redirect(navigation, {
       name: 'ProductDetailsScreen',
       params: {

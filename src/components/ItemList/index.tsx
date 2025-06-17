@@ -20,7 +20,7 @@ export const ItemList = () => {
   const [addDescription, setAddDescription] = useState<string>('');
   const [disabled, setdisabled] = useState<boolean>(true);
 
-  const { items /* loading, error */ } = useSelector((state: RootState) => state.item);
+  const { items } = useSelector((state: RootState) => state.item);
 
   const loadItems = async () => {
     if (search) {

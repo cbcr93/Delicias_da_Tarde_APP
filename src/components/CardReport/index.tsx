@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import translate from '@services/i18n';
-import { formatCurrency, formatRelativeDate } from '@utils/formatters';
+import { formatCentStringToCurrency, formatRelativeDate } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
 import { colors } from '@themes/colors';
@@ -9,22 +9,8 @@ import { colors } from '@themes/colors';
 import styles from './styles';
 
 interface Props {
-  item: {
-    id: string;
-    date: Date | string;
-    amamount_toal: number;
-    price_total: string;
-    finish: boolean;
-    itens: Partial<models.IProduct>[];
-  };
-  detailsItem: (item: {
-    id: string;
-    date: Date | string;
-    amamount_toal: number;
-    price_total: string;
-    finish: boolean;
-    itens: Partial<models.IProduct>[];
-  }) => void;
+  item: models.SalesEntity;
+  detailsItem: (item: models.SalesEntity | undefined) => void;
 }
 export const CardReport = (props: Props) => {
   const { item, detailsItem } = props;
@@ -59,7 +45,7 @@ export const CardReport = (props: Props) => {
             >
               {translate('PAGE.REPORT.GENERAL.AMOUT')}
             </Text>
-            <Text style={styles.text}>{`${item.amamount_toal}`}</Text>
+            <Text style={styles.text}>{`${item.amount_total}`}</Text>
           </View>
 
           <View style={styles.text_content_last}>
@@ -70,7 +56,9 @@ export const CardReport = (props: Props) => {
             >
               {translate('PAGE.REPORT.GENERAL.PRICE')}
             </Text>
-            <Text style={styles.text}>{formatCurrency(Number(item.price_total) / 100)}</Text>
+            <Text style={styles.text}>
+              {formatCentStringToCurrency(Number(item.price_total.replace(/\D/g, '')))}
+            </Text>
           </View>
         </View>
       </View>

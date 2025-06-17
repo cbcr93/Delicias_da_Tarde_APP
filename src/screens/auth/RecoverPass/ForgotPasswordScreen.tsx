@@ -50,7 +50,7 @@ const ForgotPasswordScreen = (props: Props) => {
 
       Alert.alert(
         'Código enviado',
-        'Verifique seu e-mail (ou console) e insira o código na próxima tela.',
+        `Verifique seu e-mail (ou console) e insira o código na próxima tela. Codigo para teste ${code}`,
       );
 
       redirect(navigation, {

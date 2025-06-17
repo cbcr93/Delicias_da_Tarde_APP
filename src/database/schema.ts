@@ -39,4 +39,29 @@ export const initDatabase = async () => {
       amount TEXT NOT NULL
     );`,
   );
+
+  await db.execAsync(`
+    CREATE TABLE IF NOT EXISTS sales (
+      id TEXT PRIMARY KEY,
+      date TEXT NOT NULL,
+      price_total TEXT NOT NULL,
+      amount_total TEXT NOT NULL,
+      finish BOOLEAN NOT NULL,
+      user_id TEXT,
+      FOREIGN KEY(user_id) REFERENCES user(id)
+    );
+  `);
+
+  await db.execAsync(`
+    CREATE TABLE IF NOT EXISTS sales_item (
+      id TEXT PRIMARY KEY,
+      sales_id TEXT NOT NULL,
+      products_id TEXT NOT NULL,
+      name TEXT NOT NULL,
+      amount TEXT NOT NULL,
+      price TEXT NOT NULL,
+      FOREIGN KEY(sales_id) REFERENCES sales(id),
+      FOREIGN KEY(products_id) REFERENCES products(id)
+    );
+  `);
 };
