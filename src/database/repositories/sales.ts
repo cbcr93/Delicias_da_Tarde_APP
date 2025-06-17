@@ -63,15 +63,15 @@ export const updateSaleFinish = async (id: string, finish: boolean) => {
 
 export const getSalesSummaryByDateRange = async (
   startDate: string,
-  endDate: string
+  endDate: string,
 ): Promise<ISalesSummary> => {
   const salesResult = await db.getAllAsync<{
     amount_total: string;
     price_total: string;
-  }>(
-    `SELECT amount_total, price_total FROM sales WHERE date BETWEEN ? AND ?`,
-    [startDate, endDate]
-  );
+  }>(`SELECT amount_total, price_total FROM sales WHERE date BETWEEN ? AND ?`, [
+    startDate,
+    endDate,
+  ]);
 
   let amount_total_sales = 0;
   let price_total_sales = 0;
@@ -80,23 +80,15 @@ export const getSalesSummaryByDateRange = async (
     const amount = parseInt(sale.amount_total, 10);
     const priceRaw = sale.price_total?.replace(/\D/g, '').trim() ?? '';
 
-    const price =
-      priceRaw.length > 0 && !isNaN(Number(priceRaw))
-        ? Number(priceRaw) / 100
-        : 0;
+    const price = priceRaw.length > 0 && !isNaN(Number(priceRaw)) ? Number(priceRaw) / 100 : 0;
 
     amount_total_sales += isNaN(amount) ? 0 : amount;
     price_total_sales += price;
   }
 
-  const average_ticket_sales =
-    amount_total_sales > 0
-      ? price_total_sales / amount_total_sales
-      : 0;
+  const average_ticket_sales = amount_total_sales > 0 ? price_total_sales / amount_total_sales : 0;
 
-  const stockResult = await db.getAllAsync<{ amount: string }>(
-    `SELECT amount FROM products`
-  );
+  const stockResult = await db.getAllAsync<{ amount: string }>(`SELECT amount FROM products`);
 
   const amount_total_stoke = stockResult.reduce((acc, curr) => {
     const parsed = parseInt(curr.amount, 10);

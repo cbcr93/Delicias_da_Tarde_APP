@@ -52,9 +52,7 @@ const CartScreen = (props: Props) => {
   useEffect(() => {
     if (flag === 'edit' && itemDetails) {
       SetItens(itemDetails.items as Partial<models.ProductsEntities>[]);
-      SetTotalAmount(
-        Number(itemDetails.amount_total),
-      );
+      SetTotalAmount(Number(itemDetails.amount_total));
       SetTotalPrice(Number(itemDetails.price_total.replace(/\D/g, '')));
       SetFinish(itemDetails.finish);
     }
@@ -125,10 +123,10 @@ const CartScreen = (props: Props) => {
           <View
             style={{
               ...styles.footer_flat,
-              ...((itemDetails &&
-                !finish) && {
-                backgroundColor: colors.gray[200],
-              }),
+              ...(itemDetails &&
+                !finish && {
+                  backgroundColor: colors.gray[200],
+                }),
             }}
           >
             <Text style={styles.title}>{translate('PAGE.SALES.CART.RESUME')}</Text>
@@ -151,9 +149,9 @@ const CartScreen = (props: Props) => {
           flag === 'add'
             ? styles.footer
             : {
-              ...styles.footer,
-              height: 150,
-            }
+                ...styles.footer,
+                height: 150,
+              }
         }
       >
         {flag === 'add' && (
@@ -182,7 +180,7 @@ const CartScreen = (props: Props) => {
           </>
         )}
 
-        {(flag === 'edit' && finish) && (
+        {flag === 'edit' && finish && (
           <AdvancedButton
             title={translate('PAGE.SALES.CART.FINISH_SALES_NOT')}
             onPress={() => ediFinishSales(false)}
@@ -193,7 +191,7 @@ const CartScreen = (props: Props) => {
             }}
           />
         )}
-        {(flag === 'edit' && !finish) && (
+        {flag === 'edit' && !finish && (
           <AdvancedButton
             title={translate('PAGE.SALES.CART.FINISH_SALES')}
             onPress={() => ediFinishSales(true)}

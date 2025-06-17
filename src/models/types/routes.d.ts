@@ -47,10 +47,7 @@ export type RootStackParamList = {
     name?: string;
     options?: {
       flag?: string | null | undefined;
-      item?:
-      | models.SalesEntity
-      | null
-      | undefined;
+      item?: models.SalesEntity | null | undefined;
     };
   };
   ConfirmCartScreen: { name?: string; options?: object };

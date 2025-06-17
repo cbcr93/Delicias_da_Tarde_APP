@@ -20,28 +20,29 @@ export const fetchSales = () => async (dispatch: Dispatch<salesActions.SalesActi
 };
 
 export const fetchSalesSummaryByDateRange =
-  (startDate?: string, endDate?: string) =>
-    async (dispatch: Dispatch) => {
-      try {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth();
+  (startDate?: string, endDate?: string) => async (dispatch: Dispatch) => {
+    try {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
 
-        const defaultStart = new Date(year, month, 1);
-        const defaultEnd = new Date(year, month + 1, 0, 23, 59, 59, 999);
+      const defaultStart = new Date(year, month, 1);
+      const defaultEnd = new Date(year, month + 1, 0, 23, 59, 59, 999);
 
-        const start = startDate ?? defaultStart.toISOString();
-        const end = endDate ?? defaultEnd.toISOString();
+      const start = startDate ?? defaultStart.toISOString();
+      const end = endDate ?? defaultEnd.toISOString();
 
-        const payload: models.ISalesSummary =
-          await salesRepository.getSalesSummaryByDateRange(start, end);
-        dispatch(salesActions.readSumary(payload));
-      } catch (e: unknown) {
-        let message = 'Erro desconhecido';
-        if (e instanceof Error) message = e.message;
-        Alert.alert('Erro ao obter resumo de vendas', message);
-      }
-    };
+      const payload: models.ISalesSummary = await salesRepository.getSalesSummaryByDateRange(
+        start,
+        end,
+      );
+      dispatch(salesActions.readSumary(payload));
+    } catch (e: unknown) {
+      let message = 'Erro desconhecido';
+      if (e instanceof Error) message = e.message;
+      Alert.alert('Erro ao obter resumo de vendas', message);
+    }
+  };
 
 export const addSale =
   (data: models.ISaleCreate) => async (dispatch: Dispatch<salesActions.SalesActions>) => {
@@ -78,7 +79,6 @@ export const addSale =
 
           await productsRepository.updateProduct(updatedProduct);
         }
-
       }
       const payload: models.SalesEntity[] = await salesRepository.getAllSales();
       dispatch(salesActions.readSales(payload));
@@ -98,12 +98,10 @@ export const addSale =
   };
 
 export const editFinishSale =
-  (data: models.SalesEntity, finish: boolean) => async (dispatch: Dispatch<salesActions.SalesActions>) => {
+  (data: models.SalesEntity, finish: boolean) =>
+  async (dispatch: Dispatch<salesActions.SalesActions>) => {
     try {
-      await salesRepository.updateSaleFinish(
-        data.id,
-        finish ? true : false,
-      );
+      await salesRepository.updateSaleFinish(data.id, finish ? true : false);
 
       const payload: models.SalesEntity[] = await salesRepository.getAllSales();
       dispatch(salesActions.readSales(payload));

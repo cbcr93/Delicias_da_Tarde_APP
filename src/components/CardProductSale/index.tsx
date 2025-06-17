@@ -17,10 +17,12 @@ export const CardProductSale = (props: Props) => {
   const { item, addCart, toDatails } = props;
 
   return (
-    <View style={{
-      ...styles.box,
-      ...(item.amount === '0' && { backgroundColor: colors.gray[200] })
-    }}>
+    <View
+      style={{
+        ...styles.box,
+        ...(item.amount === '0' && { backgroundColor: colors.gray[200] }),
+      }}
+    >
       <View style={styles.side_left}>
         <View style={styles.text_content}>
           <Text style={styles.title}>{translate('PAGE.SALES.REGISTER.NAME')}</Text>

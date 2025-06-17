@@ -56,7 +56,9 @@ export const CardReport = (props: Props) => {
             >
               {translate('PAGE.REPORT.GENERAL.PRICE')}
             </Text>
-            <Text style={styles.text}>{formatCentStringToCurrency(Number(item.price_total.replace(/\D/g, '')))}</Text>
+            <Text style={styles.text}>
+              {formatCentStringToCurrency(Number(item.price_total.replace(/\D/g, '')))}
+            </Text>
           </View>
         </View>
       </View>

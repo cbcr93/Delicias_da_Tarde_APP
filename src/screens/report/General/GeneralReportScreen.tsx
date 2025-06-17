@@ -53,7 +53,7 @@ const GeneralReportScreen = (props: Props) => {
   useEffect(() => {
     dispatch(salesThunks.fetchSales());
     dispatch(salesThunks.fetchSalesSummaryByDateRange());
-  }, [])
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -122,7 +122,9 @@ const GeneralReportScreen = (props: Props) => {
               <View style={styles.geral_content}>
                 {AdvancedIcon('Feather', 'dollar-sign', styles.Icon.width, styles.Icon.color)}
                 <Text style={styles.sub_title}>
-                  {formatCentStringToCurrency(Number(summary?.price_total_sales.replace(/\D/g, '') || 0))}
+                  {formatCentStringToCurrency(
+                    Number(summary?.price_total_sales.replace(/\D/g, '') || 0),
+                  )}
                 </Text>
                 <Text style={styles.text}>{translate('PAGE.REPORT.GENERAL.TOTAL_SALES')}</Text>
               </View>
@@ -130,7 +132,9 @@ const GeneralReportScreen = (props: Props) => {
               <View style={styles.geral_content}>
                 {AdvancedIcon('Feather', 'bar-chart-2', styles.Icon.width, styles.Icon.color)}
                 <Text style={styles.sub_title}>
-                  {formatCentStringToCurrency(Number(summary?.average_ticket_sales.replace(/\D/g, '') || 0))}
+                  {formatCentStringToCurrency(
+                    Number(summary?.average_ticket_sales.replace(/\D/g, '') || 0),
+                  )}
                 </Text>
                 <Text style={styles.text}>{translate('PAGE.REPORT.GENERAL.AVERAGE_TICKETS')}</Text>
               </View>
@@ -147,9 +151,7 @@ const GeneralReportScreen = (props: Props) => {
         }
         data={sales}
         keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
-        renderItem={({ item }) =>
-          <CardReport item={item} detailsItem={(i) => detailsItem(i)} />
-        }
+        renderItem={({ item }) => <CardReport item={item} detailsItem={(i) => detailsItem(i)} />}
       />
     </View>
   );
