@@ -56,7 +56,6 @@ const RegisterSalesScreen = (props: Props) => {
   };
 
   const toDatails = (item: models.ProductsEntities) => {
-    console.log(item);
     redirect(navigation, {
       name: 'ProductDetailsScreen',
       params: {
