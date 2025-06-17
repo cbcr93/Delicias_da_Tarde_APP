@@ -6,6 +6,7 @@ import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
 
 import styles from './styles';
+import { colors } from '@themes/colors';
 
 interface Props {
   item: Partial<models.ProductsEntities> | models.ProductsEntities;
@@ -20,7 +21,10 @@ export const CardCartSale = (props: Props) => {
   const { item, addMore, minusItem, removeItem, detailsItem, editItem, flag } = props;
 
   return (
-    <View style={styles.box}>
+    <View style={{
+      ...styles.box,
+      ...(item.amount === '0' && { backgroundColor: colors.gray[200] })
+    }}>
       <View style={styles.side_left}>
         <View style={styles.text_content}>
           <Text style={styles.title}>{translate('PAGE.SALES.CART.NAME')}</Text>

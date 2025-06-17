@@ -26,3 +26,10 @@ export interface ISaleCreate {
   user_id?: string;
   itens: models.ProductsEntities[];
 }
+
+export interface ISalesSummary {
+  amount_total_sales: number;
+  price_total_sales: string;
+  average_ticket_sales: string;
+  amount_total_stoke: number;
+}

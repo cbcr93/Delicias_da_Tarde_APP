@@ -16,7 +16,13 @@ export const removeSales = () => ({
   type: SaleActionTypes.DELETE_SALE as const,
 });
 
+export const readSumary = (summary: models.ISalesSummary) => ({
+  type: SaleActionTypes.READ_SUMMARY as const,
+  payload: summary,
+});
+
 export type SalesActions =
   | ReturnType<typeof addSales>
   | ReturnType<typeof readSales>
+  | ReturnType<typeof readSumary>
   | ReturnType<typeof removeSales>;

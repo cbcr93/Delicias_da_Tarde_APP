@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { colors } from '@themes/colors';
 import { AdvancedButton, CardCartSale } from '@components/index';
 import * as cartThunks from '@redux/cart/thunks';
+import * as salesThunks from '@redux/sales/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import { RootState } from '@redux/rootReducer';
@@ -39,25 +40,23 @@ const CartScreen = (props: Props) => {
 
   const route = useRoute<RouteProp<ReactNavigation.RootParamList, 'CartScreen'>>();
   const flag = route?.params?.options?.flag;
-  const itemDetails = route?.params?.options?.item as CartItemDetails | null | undefined;
+  const itemDetails = route?.params?.options?.item as models.SalesEntity | null | undefined;
 
   const [totalAmount, SetTotalAmount] = useState(0);
   const [totalPrice, SetTotalPrice] = useState(0);
   const [Itens, SetItens] = useState<Partial<models.ProductsEntities>[]>([]);
+  const [finish, SetFinish] = useState<boolean | null>(null);
 
   const { cart } = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
     if (flag === 'edit' && itemDetails) {
-      if (itemDetails.itens) {
-        SetItens(itemDetails.itens);
-        SetTotalAmount(
-          itemDetails.itens.reduce((acc, item) => acc + (Number(item.amount) ?? 0), 0),
-        );
-        SetTotalPrice(itemDetails.itens.reduce((acc, item) => acc + (Number(item.price) ?? 0), 0));
-      } else {
-        SetItens([]);
-      }
+      SetItens(itemDetails.items as Partial<models.ProductsEntities>[]);
+      SetTotalAmount(
+        Number(itemDetails.amount_total),
+      );
+      SetTotalPrice(Number(itemDetails.price_total.replace(/\D/g, '')));
+      SetFinish(itemDetails.finish);
     }
     if (flag === 'add') {
       SetTotalAmount(cart.reduce((acc, item) => acc + (Number(item.amount) ?? 0), 0));
@@ -74,55 +73,33 @@ const CartScreen = (props: Props) => {
     }
   };
 
-  const redirectConfirmCart = () => {
-    redirect(navigation, { name: 'ConfirmCartScreen' });
-  };
-
   const finishSales = () => {
     const body: models.ISaleCreate = {
-      price_total: formatCentStringToCurrency(totalPrice),
+      price_total: formatCentStringToCurrency(totalPrice).replace(/\D/g, ''),
       amount_total: totalAmount.toString(),
       finish: true,
       user_id: user?.id,
       itens: cart,
     };
 
-    console.log('body', body);
+    dispatch(salesThunks.addSale(body));
 
-    // redirect(navigation, { name: 'ConfirmCartScreen' });
+    redirect(navigation, { name: 'ConfirmCartScreen' });
+  };
+
+  const ediFinishSales = (finish: boolean) => {
+    if (itemDetails) dispatch(salesThunks.editFinishSale(itemDetails, finish));
   };
 
   const addMore = (item: models.ProductsEntities) => {
     if (item) {
-      try {
-        dispatch(cartThunks.addCart(item));
-        showToast({
-          type: 'success',
-          title: 'Item adicionado no carrinho!',
-        });
-      } catch (error) {
-        showToast({
-          type: 'error',
-          title: 'Erro ao adicionar no carrinho!',
-        });
-      }
+      dispatch(cartThunks.addCart(item));
     }
   };
 
   const removeItem = (item: models.ProductsEntities) => {
     if (item) {
-      try {
-        dispatch(cartThunks.removeCartById(item));
-        showToast({
-          type: 'success',
-          title: 'Item remover do carrinho!',
-        });
-      } catch (error) {
-        showToast({
-          type: 'error',
-          title: 'Erro ao remover do carrinho!',
-        });
-      }
+      dispatch(cartThunks.removeCartById(item));
     }
   };
 
@@ -148,8 +125,8 @@ const CartScreen = (props: Props) => {
           <View
             style={{
               ...styles.footer_flat,
-              ...(itemDetails &&
-                !itemDetails.finish && {
+              ...((itemDetails &&
+                !finish) && {
                 backgroundColor: colors.gray[200],
               }),
             }}
@@ -205,32 +182,27 @@ const CartScreen = (props: Props) => {
           </>
         )}
 
-        {flag === 'edit' && itemDetails && (
-          <>
-            {itemDetails.finish && (
-              <AdvancedButton
-                title={translate('PAGE.SALES.CART.FINISH_SALES_NOT')}
-                onPress={redirectConfirmCart}
-                style={{
-                  ...styles.buttonContainer,
-                  backgroundColor: colors.brand.Secondary,
-                  borderColor: colors.brand.Secondary,
-                }}
-              />
-            )}
-
-            {!itemDetails.finish && (
-              <AdvancedButton
-                title={translate('PAGE.SALES.CART.FINISH_SALES')}
-                onPress={redirectConfirmCart}
-                style={{
-                  ...styles.buttonContainer,
-                  backgroundColor: colors.brand.Tertiary,
-                  borderColor: colors.brand.Tertiary,
-                }}
-              />
-            )}
-          </>
+        {(flag === 'edit' && finish) && (
+          <AdvancedButton
+            title={translate('PAGE.SALES.CART.FINISH_SALES_NOT')}
+            onPress={() => ediFinishSales(false)}
+            style={{
+              ...styles.buttonContainer,
+              backgroundColor: colors.brand.Secondary,
+              borderColor: colors.brand.Secondary,
+            }}
+          />
+        )}
+        {(flag === 'edit' && !finish) && (
+          <AdvancedButton
+            title={translate('PAGE.SALES.CART.FINISH_SALES')}
+            onPress={() => ediFinishSales(true)}
+            style={{
+              ...styles.buttonContainer,
+              backgroundColor: colors.brand.Tertiary,
+              borderColor: colors.brand.Tertiary,
+            }}
+          />
         )}
 
         <AdvancedButton

@@ -3,6 +3,7 @@ import { SaleActionTypes, SaleState } from './types';
 
 const initialState: SaleState = {
   sales: [],
+  summary: null,
 };
 
 export function SalesReducer(state = initialState, action: SalesActions): SaleState {
@@ -12,6 +13,9 @@ export function SalesReducer(state = initialState, action: SalesActions): SaleSt
 
     case SaleActionTypes.DELETE_SALE:
       return { ...state, sales: [] };
+
+    case SaleActionTypes.READ_SUMMARY:
+      return { ...state, summary: action.payload };
 
     default:
       return state;

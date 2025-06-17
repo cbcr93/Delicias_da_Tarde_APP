@@ -50,18 +50,7 @@ const ProductDetailsScreen = (props: Props) => {
 
   const addCart = () => {
     if (item) {
-      try {
-        dispatch(cartThunks.addCart(item));
-        showToast({
-          type: 'success',
-          title: 'Item adicionado no carrinho!',
-        });
-      } catch (error) {
-        showToast({
-          type: 'error',
-          title: 'Erro ao adicionar no carrinho!',
-        });
-      }
+      dispatch(cartThunks.addCart(item));
     }
   };
 
