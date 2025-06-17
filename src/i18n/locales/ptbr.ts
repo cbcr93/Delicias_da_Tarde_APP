@@ -180,6 +180,12 @@ export default {
     },
   },
   COMPONENTS: {
+    ADAVANCED_DATE_PICKERS: {
+      OPEN: 'Abrir Modal',
+      TITLE: 'Escolha o intervalo de datas',
+      START: 'Data Inicial',
+      END: 'Data Final',
+    },
     ADAVANCED_MODAL: {
       OPEN: 'Abrir Modal',
     },

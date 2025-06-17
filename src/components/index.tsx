@@ -1,4 +1,5 @@
 export * from './AdvancedButton';
+export * from './AdvancedDatePickers';
 export * from './AdvancedIcon';
 export * from './AdvancedInput';
 export * from './AdvancedModal';

@@ -19,6 +19,31 @@ export const fetchSales = () => async (dispatch: Dispatch<salesActions.SalesActi
   }
 };
 
+export const fetchSalesByDateRange = (startDate?: string, endDate?: string) =>
+  async (dispatch: Dispatch<salesActions.SalesActions>) => {
+    try {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+
+      const defaultStart = new Date(year, month, 1);
+      const defaultEnd = new Date(year, month + 1, 0, 23, 59, 59, 999);
+
+      const start = startDate ?? defaultStart.toISOString();
+      const end = endDate ?? defaultEnd.toISOString();
+
+      const payload: models.SalesEntity[] = await salesRepository.searchSalesByDateRange(
+        start,
+        end,
+      );
+      dispatch(salesActions.readSales(payload));
+    } catch (e: unknown) {
+      let message = 'Erro desconhecido';
+      if (e instanceof Error) message = e.message;
+      Alert.alert('Erro', message);
+    }
+  };
+
 export const fetchSalesSummaryByDateRange =
   (startDate?: string, endDate?: string) => async (dispatch: Dispatch) => {
     try {
@@ -100,23 +125,23 @@ export const addSale =
 
 export const editFinishSale =
   (data: models.SalesEntity, finish: boolean) =>
-  async (dispatch: Dispatch<salesActions.SalesActions>) => {
-    try {
-      await salesRepository.updateSaleFinish(data.id, finish ? true : false);
+    async (dispatch: Dispatch<salesActions.SalesActions>) => {
+      try {
+        await salesRepository.updateSaleFinish(data.id, finish ? true : false);
 
-      const payload: models.SalesEntity[] = await salesRepository.getAllSales();
-      dispatch(salesActions.readSales(payload));
-      showToast({
-        type: 'success',
-        title: 'Venda Editada!',
-      });
-    } catch (e: unknown) {
-      let message = 'Erro desconhecido';
-      if (e instanceof Error) message = e.message;
-      console.log('Erro ao registrar venda', message);
-      showToast({
-        type: 'error',
-        title: 'Erro ao editar venda!',
-      });
-    }
-  };
+        const payload: models.SalesEntity[] = await salesRepository.getAllSales();
+        dispatch(salesActions.readSales(payload));
+        showToast({
+          type: 'success',
+          title: 'Venda Editada!',
+        });
+      } catch (e: unknown) {
+        let message = 'Erro desconhecido';
+        if (e instanceof Error) message = e.message;
+        console.log('Erro ao registrar venda', message);
+        showToast({
+          type: 'error',
+          title: 'Erro ao editar venda!',
+        });
+      }
+    };

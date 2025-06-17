@@ -2,6 +2,10 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
   blackOpacity: 'rgba(0, 0, 0, 0.8)',
+  blackOpacityOptions: {
+    6: 'rgba(0, 0, 0, 0.6)',
+    8: 'rgba(0, 0, 0, 0.8)',
+  },
 
   gray: {
     100: '#E1E1E1',

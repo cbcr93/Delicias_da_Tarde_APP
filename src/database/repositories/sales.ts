@@ -57,6 +57,20 @@ export const searchSalesByDate = async (date: string): Promise<SalesEntity[]> =>
   return sales;
 };
 
+export const searchSalesByDateRange = async (start: string, end: string): Promise<SalesEntity[]> => {
+  const sales = await db.getAllAsync<SalesEntity>(
+    `SELECT * FROM sales WHERE date BETWEEN ? AND ? ORDER BY date DESC`,
+    [start, end]
+  );
+  for (const sale of sales) {
+    sale.items = await db.getAllAsync<SalesItemEntity>(
+      `SELECT * FROM sales_item WHERE sales_id = ?`,
+      [sale.id],
+    );
+  }
+  return sales;
+};
+
 export const updateSaleFinish = async (id: string, finish: boolean) => {
   await db.runAsync(`UPDATE sales SET finish = ? WHERE id = ?`, [finish ? 1 : 0, id]);
 };

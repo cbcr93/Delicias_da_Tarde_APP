@@ -1,13 +1,13 @@
 import { Text, View } from 'react-native';
 import translate from '@services/i18n';
-import { AdvancedButton, AdvancedIcon } from '@components/index';
+import { AdvancedButton, AdvancedDatePickers, AdvancedIcon } from '@components/index';
 import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
 import { FlatList } from 'react-native-gesture-handler';
 import { formatCentStringToCurrency } from '@utils/formatters';
 import { CardReport } from '@components/CardReport';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import * as salesThunks from '@redux/sales/thunks';
@@ -30,28 +30,66 @@ const GeneralReportScreen = (props: Props) => {
     redirect(navigation, { name: 'CartScreen', params: { options: { flag: 'edit', item } } });
   };
 
-  const searchByDate = (when: string) => {
+  const [isPickerVisible, setPickerVisible] = useState(false);
+
+  const getDateRange = (when: string) => {
+    const now = new Date();
+
     switch (when) {
-      case 'today':
-        console.log(Date.now());
-        break;
+      case 'today': {
+        const start = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0));
+        const end = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999));
 
-      case 'week':
-        break;
+        return {
+          start: start.toISOString(),
+          end: end.toISOString(),
+        };
+      }
 
-      case 'mounth':
-        break;
+      case 'week': {
+        const localDay = now.getDay();
+        const monday = new Date(now);
+        const diff = localDay === 0 ? -6 : 1 - localDay;
+        monday.setDate(now.getDate() + diff);
 
-      case 'personalized':
-        break;
+        const start = new Date(Date.UTC(monday.getFullYear(), monday.getMonth(), monday.getDate(), 0, 0, 0, 0));
+        const end = new Date(Date.UTC(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6, 23, 59, 59, 999));
+
+        return {
+          start: start.toISOString(),
+          end: end.toISOString(),
+        };
+      }
+
+      case 'month': {
+        const start = new Date(Date.UTC(now.getFullYear(), now.getMonth(), 1, 0, 0, 0, 0));
+        const end = new Date(Date.UTC(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999));
+
+        return {
+          start: start.toISOString(),
+          end: end.toISOString(),
+        };
+      }
 
       default:
-        break;
+        return null;
     }
   };
 
+  const handleRange = (range: { startDate: string; endDate: string }) => {
+    dispatch(salesThunks.fetchSalesSummaryByDateRange(range.startDate, range.endDate));
+    dispatch(salesThunks.fetchSalesByDateRange(range.startDate, range.endDate));
+  };
+
+  const searchByDate = (when: string) => {
+    const range = getDateRange(when);
+    if (!range) return;
+
+    handleRange({ startDate: range.start, endDate: range.end })
+  }
+
   useEffect(() => {
-    dispatch(salesThunks.fetchSales());
+    dispatch(salesThunks.fetchSalesByDateRange());
     dispatch(salesThunks.fetchSalesSummaryByDateRange());
   }, []);
 
@@ -89,7 +127,7 @@ const GeneralReportScreen = (props: Props) => {
               </Text>
               <AdvancedButton
                 title={'Mês'}
-                onPress={() => searchByDate('mounth')}
+                onPress={() => searchByDate('month')}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
@@ -102,7 +140,7 @@ const GeneralReportScreen = (props: Props) => {
               </Text>
               <AdvancedButton
                 title={'Personalizado'}
-                onPress={() => searchByDate('personalized')}
+                onPress={() => setPickerVisible(true)}
                 style={styles.button_Text}
                 textColor={styles.button_Text.color}
               />
@@ -152,6 +190,11 @@ const GeneralReportScreen = (props: Props) => {
         data={sales}
         keyExtractor={(item) => item.id?.toString() ?? Math.random().toString()}
         renderItem={({ item }) => <CardReport item={item} detailsItem={(i) => detailsItem(i)} />}
+      />
+      <AdvancedDatePickers
+        visible={isPickerVisible}
+        onClose={() => setPickerVisible(false)}
+        onConfirm={handleRange}
       />
     </View>
   );
