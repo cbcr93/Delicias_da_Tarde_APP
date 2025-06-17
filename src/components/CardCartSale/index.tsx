@@ -53,7 +53,11 @@ export const CardCartSale = (props: Props) => {
               type="primary"
               width={50}
               onPress={() => removeItem(item)}
-              style={styles.buttonIconContainer}
+              style={{
+                ...styles.buttonIconContainer,
+                backgroundColor: colors.brand.Secondary,
+                borderColor: colors.brand.Secondary,
+              }}
               iconStyle={styles.buttonIcon}
               iconSize={styles.buttonIcon.width}
             />
