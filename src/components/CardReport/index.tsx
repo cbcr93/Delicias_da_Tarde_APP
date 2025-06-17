@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import translate from '@services/i18n';
-import { formatCentStringToCurrency, formatCurrency, formatRelativeDate } from '@utils/formatters';
+import { formatCentStringToCurrency, formatRelativeDate } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
 import { colors } from '@themes/colors';

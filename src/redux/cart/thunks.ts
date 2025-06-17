@@ -1,12 +1,11 @@
 import { Dispatch } from 'redux';
-import { Alert } from 'react-native';
 import * as models from '@models/types';
 import { RootState } from '@redux/rootReducer';
 import * as productsRepository from '@database/repositories/products';
 import { formatCents } from '@utils/formatters';
+import { showToast } from '@utils/toast';
 
 import * as cartActions from './actions';
-import { showToast } from '@utils/toast';
 
 export const addCart =
   (product: models.ProductsEntities) =>

@@ -4,9 +4,9 @@ import translate from '@services/i18n';
 import { formatCurrency } from '@utils/formatters';
 import { AdvancedButton } from '@components/AdvancedButton';
 import * as models from '@models/types';
+import { colors } from '@themes/colors';
 
 import styles from './styles';
-import { colors } from '@themes/colors';
 
 interface Props {
   item: Partial<models.ProductsEntities> | models.ProductsEntities;

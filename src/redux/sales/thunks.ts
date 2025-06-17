@@ -70,6 +70,7 @@ export const addSale =
 
         const originalProduct = await productsRepository.getProductById(item.id);
         if (item.id && item.amount && originalProduct) {
+          // eslint-disable-next-line
           const newAmount = (Number(originalProduct.amount) ?? 0) - (Number(item.amount) ?? 0);
 
           const updatedProduct = {

@@ -5,15 +5,15 @@ import { NavigationProp, NavigationState } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
 import { FlatList } from 'react-native-gesture-handler';
-import { formatCentStringToCurrency, formatCurrency } from '@utils/formatters';
+import { formatCentStringToCurrency } from '@utils/formatters';
 import { CardReport } from '@components/CardReport';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import * as salesThunks from '@redux/sales/thunks';
+import { RootState } from '@redux/rootReducer';
 
 import styles from './styles';
-import { RootState } from '@redux/rootReducer';
 
 interface Props {
   navigation: Omit<NavigationProp<ReactNavigation.RootParamList>, 'getState'> & {

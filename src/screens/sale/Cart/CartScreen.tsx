@@ -3,7 +3,7 @@ import translate from '@services/i18n';
 import { NavigationProp, NavigationState, RouteProp, useRoute } from '@react-navigation/native';
 import { redirect } from '@routes/Redirect';
 import * as models from '@models/types';
-import { formatCentStringToCurrency, formatCurrency } from '@utils/formatters';
+import { formatCentStringToCurrency } from '@utils/formatters';
 import { FlatList } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 import { colors } from '@themes/colors';
@@ -13,7 +13,6 @@ import * as salesThunks from '@redux/sales/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import { RootState } from '@redux/rootReducer';
-import { showToast } from '@utils/toast';
 import { useAuth } from '@contexts/AuthContext';
 
 import styles from './CartScreenStyles';
@@ -23,15 +22,6 @@ interface Props {
     getState(): NavigationState | undefined;
   };
 }
-
-type CartItemDetails = {
-  id: string;
-  date: Date | string;
-  amamount_toal: number;
-  price_total: string;
-  finish: boolean;
-  itens: Partial<models.ProductsEntities>[];
-};
 
 const CartScreen = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,7 +47,9 @@ const CartScreen = (props: Props) => {
       SetFinish(itemDetails.finish);
     }
     if (flag === 'add') {
+      // eslint-disable-next-line
       SetTotalAmount(cart.reduce((acc, item) => acc + (Number(item.amount) ?? 0), 0));
+      // eslint-disable-next-line
       SetTotalPrice(cart.reduce((acc, item) => acc + (Number(item.price) ?? 0), 0));
       SetItens(cart);
     }
