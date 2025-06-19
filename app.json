@@ -20,11 +20,23 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "package": "com.deliciastarde.app",
+      "versionCode": 1,
       "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-sqlite", "expo-secure-store", "expo-localization"]
+    "plugins": [
+      "expo-sqlite",
+      "expo-secure-store",
+      "expo-localization"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cae19eee-ca34-4b39-91e7-b140d3b39b76"
+      }
+    },
+    "owner": "cbcr93"
   }
 }

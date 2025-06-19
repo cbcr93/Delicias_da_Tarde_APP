@@ -23,20 +23,4 @@ export const drawerScreens: Record<string, DrawerScreenConfig> = {
         AdvancedIcon('Feather', translate('ROUTER.PROFILESTACK.ICON'), size, color),
     },
   },
-  Settings: {
-    component: SettingsScreen,
-    isPrivate: true,
-    options: {
-      drawerIcon: ({ color, size }: { color: string; size: number }) =>
-        AdvancedIcon('Feather', translate('ROUTER.SETTINGS.ICON'), size, color),
-    },
-  },
-  Info: {
-    component: InfoScreen,
-    isPrivate: true,
-    options: {
-      drawerIcon: ({ color, size }: { color: string; size: number }) =>
-        AdvancedIcon('Feather', translate('ROUTER.INFO.ICON'), size, color),
-    },
-  },
 };
